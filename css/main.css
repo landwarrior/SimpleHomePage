@@ -1,0 +1,152 @@
+body {
+    font-family: "Roboto", "Segoe UI", "UD デジタル 教科書体 NP-R", "游ゴシック", "Yu Gothic", "メイリオ", meiryo, sans-serif;
+    font-size: 18px;
+    background-color: #f0f0f0;
+}
+
+.breadcrumb>li+li:before {
+    content: ">";
+}
+
+.title {
+    text-align: center;
+    font-size: 300%;
+}
+
+.title:hover {
+    background-color: #00c4b2;
+}
+
+.cen {
+    text-align: center;
+}
+
+.mar20 {
+    margin: 20px;
+}
+
+.padtop20 {
+    padding-top: 20px;
+}
+
+.pad20-0 {
+    padding: 20px 0;
+}
+
+.pada {
+    padding: 2px 4px;
+}
+
+.bghovgrey:hover {
+    background-color: #a1a1a1 !important;
+    color: #ffffff;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+ul.nav .active a {
+    background-color: #00c4b2 !important;
+}
+
+ul.nav .active a:hover {
+    background-color: #00c4b2;
+}
+
+.trans1 {
+    transition-duration: 1s;
+}
+
+.trans02 {
+    transition-duration: 0.2s;
+}
+
+.trans05 {
+    transition-duration: 0.5s;
+}
+
+.linkhead {
+    font-weight: bold;
+    background-color: #00c4b2;
+    color: #ffffff;
+}
+
+.linkhead:hover {
+    color: #a1a1a1;
+}
+
+.myhide {
+    display: none;
+    animation: fadeIn 1s ease 0s 1 normal;
+}
+
+.menulist {
+    padding: 5px 10px !important;
+}
+
+.btn-outline {
+    color: #00c4b2 !important;
+    border-color: #00c4b2;
+}
+.btn-outline:hover {
+    color: #f0f0f0 !important;
+    border-color: #f0f0f0;
+    background-color: #00c4b2;
+}
+
+/* 動く下線で検索して見つけたやつそのまま(ではなくなった) */
+
+.moveLine {
+    position: relative;
+    display: inline-block;
+    transition: 0.5s;
+}
+
+.moveLine:hover {
+    color: #a1a1a1;
+}
+
+.moveLine:before, .moveLine:after {
+    position: absolute;
+    top: 1.2em;
+    content: "";
+    display: inline-block;
+    width: 0;
+    height: 2px;
+    background-color: #00c4b2;
+    transition: 0.5s;
+}
+
+.moveLine:before {
+    left: 50%;
+}
+
+.moveLine:after {
+    right: 50%;
+}
+
+.moveLine:hover:before, .moveLine:hover:after {
+    width: 50%;
+}
+
+
+/* ここまで */
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0
+    }
+    100% {
+        opacity: 1
+    }
+}
+
+@-webkit-keyframes fadeIn {
+    0% {
+        opacity: 0
+    }
+    100% {
+        opacity: 1
+    }
+}
