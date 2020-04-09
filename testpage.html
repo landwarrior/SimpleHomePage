@@ -20,6 +20,37 @@
         }
 
         $("#result").html(news_html);
+        var now = new Date();
+        var youbi = now.getDay();
+        var str_youbi = '';
+        switch (youbi) {
+          case 0:
+            str_youbi = '日';
+            break;
+          case 1:
+            str_youbi = '月';
+            break;
+          case 2:
+            str_youbi = '火';
+            break;
+          case 3:
+            str_youbi = '水';
+            break;
+          case 4:
+            str_youbi = '木';
+            break;
+          case 5:
+            str_youbi = '金';
+            break;
+          case 6:
+            str_youbi = '土';
+            break;
+        }
+        var str = `${now.getFullYear()}/${('0' + (now.getMonth() + 1)).slice(-2)}/${('0' + now.getDate()).slice(-2)}` +
+          ` (${str_youbi}) ` +
+          `${('0' + now.getHours()).slice(-2)}:${('0' + now.getMinutes()).slice(-2)}:${('0' + now.getSeconds()).slice(-2)}` +
+          '(JST)';
+        $("#now").text(`${str}`);
       });
     }
 
@@ -60,17 +91,21 @@
       margin: auto 0;
       padding: 10px;
     }
+
+    div {
+      text-align: center;
+      margin: auto 0;
+      padding: 0;
+    }
   </style>
 </head>
 
 <body>
   <h1>主要な Yahoo! ニュース</h1>
   <div>
-    <div id="result">
-
-    </div>
+    <div id="now"></div>
+    <div id="result"></div>
   </div>
-
 </body>
 
 </html>
