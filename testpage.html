@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Survivalな理想郷｜テストページ</title>
+  <script src="js/jquery.min.js"></script>
+  <script>
+    function test() {
+      $.ajax({
+        type: "POST",
+        url: "https://ng615565hc.execute-api.ap-northeast-1.amazonaws.com/prd/slackbot-private",
+        data: "yahoo"
+      }).done(function(data_list) {
+        var news_html = "";
+        for (data of data_list) {
+          news_html += `<h1><a href="${data.url}">${data.title}</a></h1>`;
+        }
+
+        $("#result").html(news_html);
+      });
+    }
+
+    // function simpleAjax() {
+    //   const xhr = new XMLHttpRequest(),
+    //   method = "POST",
+    //   url = "https://ng615565hc.execute-api.ap-northeast-1.amazonaws.com/prd/slackbot-private";
+    //   xhr.open(method, url, true);
+    //   xhr.setRequestHeader('content-type', 'text/plain');
+    //   xhr.onreadystatechange = function() {
+    //     var result = document.getElementById('result');
+    //     if (xhr.readyState == 4) { // 通信の完了時
+    //       if (xhr.status == 200) { // 通信の成功時
+    //         var data_list = eval('(' + xhr.responseText + ')');
+    //         console.log(data_list);
+    //         var news_html = "";
+    //         for (data of data_list) {
+    //           news_html += `<h1><a href="${data.url}">${data.title}</a></h1>`;
+    //         }
+    //         result.innerHTML = news_html;
+    //       }
+    //     } else {
+    //       result.innerHTML = "通信中...";
+    //     }
+    //   }
+    //   xhr.send('yahoo');
+    // }
+
+    window.onload = function() {
+      test();
+      // 30 分ごとに再描画
+      var intervalID = setInterval(test, 1000 * 60 * 30);
+    }
+  </script>
+  <style>
+    h1 {
+      text-align: center;
+      margin: auto 0;
+      padding: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>主要な Yahoo! ニュース</h1>
+  <div>
+    <div id="result">
+
+    </div>
+  </div>
+
+</body>
+
+</html>
