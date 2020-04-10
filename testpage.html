@@ -16,7 +16,7 @@
       }).done(function(data_list) {
         var news_html = "";
         for (data of data_list) {
-          news_html += `<h1><a href="${data.url}">${data.title}</a></h1>`;
+          news_html += `<h1><a href="${data.url}" target="_blank">${data.title}</a></h1>`;
         }
 
         $("#result").html(news_html);
