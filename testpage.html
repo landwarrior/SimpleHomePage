@@ -54,6 +54,10 @@
       });
     }
 
+    function deleteSignage() {
+      $("div:not(.myContents)").remove();
+    }
+
     // function simpleAjax() {
     //   const xhr = new XMLHttpRequest(),
     //   method = "POST",
@@ -81,8 +85,10 @@
 
     window.onload = function() {
       test();
+      deleteSignage();
       // 30 分ごとに再描画
       var intervalID = setInterval(test, 1000 * 60 * 30);
+      var delIntervalID = setInterval(deleteSignage, 5000);
     }
   </script>
   <style>
@@ -98,21 +104,21 @@
       padding: 0;
     }
     body {
-      background-color: #111111;
-      color: #f0f0f0;
+      background-color: #000000;
+      color: #a0a0a0;
       font-family: "BIZ UDPゴシック", "メイリオ", san-serif;
     }
     a {
-      color: #f0f0f0;
+      color: #a0a0a0;
     }
   </style>
 </head>
 
 <body>
   <h1>主要な Yahoo! ニュース</h1>
-  <div>
-    <div id="now"></div>
-    <div id="result"></div>
+  <div class="myContents">
+    <div id="now" class="myContents"></div>
+    <div id="result" class="myContents"></div>
   </div>
 </body>
 
