@@ -8,6 +8,9 @@
   <title>Survivalな理想郷｜テストページ</title>
   <script src="js/jquery.min.js"></script>
   <script>
+
+    let darkTheme = true;
+
     function test() {
       $.ajax({
         type: "POST",
@@ -51,6 +54,7 @@
           `${('0' + now.getHours()).slice(-2)}:${('0' + now.getMinutes()).slice(-2)}:${('0' + now.getSeconds()).slice(-2)}` +
           '(JST)';
         $("#now").text(`${str}`);
+        cssToggle(false);
       });
     }
 
@@ -89,6 +93,25 @@
       // 30 分ごとに再描画
       var intervalID = setInterval(test, 1000 * 60 * 30);
       var delIntervalID = setInterval(deleteSignage, 5000);
+    }
+
+    $(function() {
+      $('h1').click(function() {
+          cssToggle(true);
+      });
+    });
+
+    function cssToggle(isToggle) {
+      if (isToggle == true) {
+        darkTheme = darkTheme ? false : true;
+      }
+      if (darkTheme == false) {
+        $('body').css({ 'background-color': '#ebebeb', 'color': '#000000' });
+        $('a').css({ 'color': '#000000' });
+      } else {
+        $('body').css({ 'background-color': '#000000', 'color': '#a0a0a0' });
+        $('a').css({ 'color': '#a0a0a0' });
+      }
     }
   </script>
   <style>
