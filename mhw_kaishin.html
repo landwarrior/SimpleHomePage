@@ -81,18 +81,34 @@
       let kaishin = parseInt($('#kaishin').val());
       let kireaji = parseInt($('#kireaji').val());
       let chokaishin = parseInt($('#chokaishin').val());
-      let damageBase = base * kireaji / 100;
+      // 100 倍されてる
+      let damageBase = base * kireaji;
       let special = 0;
       if (kaishin > 100) {
         kaishin = 100;
       }
       if (kaishin > 0) {
-        special = damageBase * 100 * chokaishin / 10000;
+        // 10000 倍されてる
+        special = damageBase * chokaishin;
       } else {
-        special = damageBase * 100 * 75 / 10000;
+        chokaishin = 75;
+        // 10000 倍されてる
+        special = damageBase * chokaishin;
       }
-      let result = (damageBase * 100 * (100 - Math.abs(kaishin)) + special * 100 * Math.abs(kaishin)) / 10000;
+      // 100 * 100 * 100 倍されている
+      let result = (damageBase * 100 * (100 - Math.abs(kaishin)) + special * Math.abs(kaishin)) / 1000000;
       $('#kekka').text(result);
+      $('#x').text(damageBase / 100);
+      $('#a').text(base);
+      $('#b').text(kireaji / 100);
+      $('#y').text(special / 10000);
+      $('#c').text(damageBase / 100);
+      $('#d').text(chokaishin / 100);
+      $('#z').text(result);
+      $('#e').text(damageBase / 100);
+      $('#f').text(Math.abs(kaishin));
+      $('#g').text(special / 10000);
+      $('#h').text(Math.abs(kaishin));
     }
   </script>
   <style>
@@ -122,6 +138,10 @@
       padding: 0 10px;
       border: solid 1px #aaaaaa;
       background-color: green;
+    }
+
+    #kekka {
+      text-decoration: underline;
     }
   </style>
 </head>
@@ -156,7 +176,7 @@
       <td>超会心：</td>
       <td>
         <select id="chokaishin">
-          <option value="125">なし</option>
+          <option value="125">なし(1.25倍)</option>
           <option value="130">レベル1(1.3倍)</option>
           <option value="135">レベル2(1.35倍)</option>
           <option value="140">レベル3(1.4倍)</option>
@@ -166,6 +186,15 @@
   </table>
   <h2>期待値</h2>
   <h3 id="kekka"></h3>
+  <div>
+    算出方法
+    <br>攻撃力 = 基本攻撃力 × 切れ味補正
+    <br>会心発生時攻撃力 = 攻撃力 × 会心時倍率
+    <br>期待値 = (攻撃力 × (100 - 会心率) + 会心発生時攻撃力 × 会心率) / 100
+    <br><span id="x"></span> = <span id="a"></span> × <span id="b"></span>
+    <br><span id="y"></span> = <span id="c"></span> × <span id="d"></span>
+    <br><span id="z"></span> = (<span id="e"></span> × (100 - <span id="f"></span>) + <span id="g"></span> × <span id="h"></span>) / 100
+  </div>
   <footer class="footer padtop20">
     <p class="cen">&copy; Copyright 2006 - <span id="year"></span> landwarrior All Rights Reserved.</p>
   </footer>
