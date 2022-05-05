@@ -6,83 +6,29 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>モンハンワールド武器攻撃力期待値算出</title>
-  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-  <link href="css/bootstrap-theme.min.css" rel="stylesheet">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <link href="css/main.css" rel="stylesheet">
-  <script src="js/main.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+  <link href="css/materialize.min.css" rel="stylesheet">
+  <script defer src="js/materialize.min.js"></script>
+  <link href="css/font.css" rel="stylesheet">
+  <script defer src="js/deleteAdvertising.js"></script>
+  <script defer src="js/main.js"></script>
   <script>
-    (function(i, s, o, g, r, a, m) {
-      i['GoogleAnalyticsObject'] = r;
-      i[r] = i[r] || function() {
-        (i[r].q = i[r].q || []).push(arguments)
-      }, i[r].l = 1 * new Date();
-      a = s.createElement(o),
-        m = s.getElementsByTagName(o)[0];
-      a.async = 1;
-      a.src = g;
-      m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-
-    ga('create', 'UA-67415165-2', 'auto');
-    ga('send', 'pageview');
-
-    $(function() {
-      $('#kireaji').change(function() {
-        let selected_val = $(this).val();
-        switch (selected_val) {
-          case '50':
-            $('#mihon').css({
-              'background-color': 'red'
-            });
-            break;
-          case '75':
-            $('#mihon').css({
-              'background-color': 'orange'
-            });
-            break;
-          case '100':
-            $('#mihon').css({
-              'background-color': 'yellow'
-            });
-            break;
-          case '105':
-            $('#mihon').css({
-              'background-color': 'green'
-            });
-            break;
-          case '125':
-            $('#mihon').css({
-              'background-color': 'blue'
-            });
-            break;
-          case '132':
-            $('#mihon').css({
-              'background-color': 'white'
-            });
-            break;
-          case '139':
-            $('#mihon').css({
-              'background-color': 'purple'
-            });
-            break;
-        }
-      });
-      $('#damage').on('change', calc);
-      $('#kaishin').on('change', calc);
-      $('#kireaji').on('change', calc);
-      $('#chokaishin').on('change', calc);
+    window.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('damage').addEventListener('change', calc);
+      document.getElementById('kaishin').addEventListener('change', calc);
+      document.getElementById('kireaji').addEventListener('change', calc);
+      document.getElementById('chokaishin').addEventListener('change', calc);
     });
 
-    let calc = function() {
-      let base = parseInt($('#damage').val());
-      let kaishin = parseInt($('#kaishin').val());
-      let kireaji = parseInt($('#kireaji').val());
-      let chokaishin = parseInt($('#chokaishin').val());
+    function calc() {
+      const base = Number.parseInt(document.getElementById('damage').value);
+      let kaishin = Number.parseInt(document.getElementById('kaishin').value);
+      const kireaji = Number.parseInt(document.getElementById('kireaji').value);
+      let chokaishin = Number.parseInt(document.getElementById('chokaishin').value);
       // 100 倍されてる
-      let damageBase = base * kireaji;
+      const damageBase = base * kireaji;
       let special = 0;
       if (kaishin > 100) {
         kaishin = 100;
@@ -96,48 +42,25 @@
         special = damageBase * chokaishin;
       }
       // 100 * 100 * 100 倍されている
-      let result = (damageBase * 100 * (100 - Math.abs(kaishin)) + special * Math.abs(kaishin)) / 1000000;
-      $('#kekka').text(result);
-      $('#x').text(damageBase / 100);
-      $('#a').text(base);
-      $('#b').text(kireaji / 100);
-      $('#y').text(special / 10000);
-      $('#c').text(damageBase / 100);
-      $('#d').text(chokaishin / 100);
-      $('#z').text(result);
-      $('#e').text(damageBase / 100);
-      $('#f').text(Math.abs(kaishin));
-      $('#g').text(special / 10000);
-      $('#h').text(Math.abs(kaishin));
+      const result = (damageBase * 100 * (100 - Math.abs(kaishin)) + special * Math.abs(kaishin)) / 1000000;
+      document.getElementById('kekka').innerText = result;
+      document.getElementById('x').innerText = damageBase / 100;
+      document.getElementById('a').innerText = base;
+      document.getElementById('b').innerText = kireaji / 100;
+      document.getElementById('y').innerText = special / 10000;
+      document.getElementById('c').innerText = damageBase / 100;
+      document.getElementById('d').innerText = chokaishin / 100;
+      document.getElementById('z').innerText = result;
+      document.getElementById('e').innerText = damageBase / 100;
+      document.getElementById('f').innerText = Math.abs(kaishin);
+      document.getElementById('g').innerText = special / 10000;
+      document.getElementById('h').innerText = Math.abs(kaishin);
     }
   </script>
   <style>
-    body {
-      padding: 30px;
-      text-align: center;
-    }
-
-    table {
-      margin: 0 auto;
-    }
-
-    td:nth-child(1) {
-      text-align: right;
-    }
-
-    td:nth-child(2) {
-      text-align: left;
-    }
 
     article {
       padding: 10px 0;
-    }
-
-    #mihon {
-      height: 20px;
-      padding: 0 10px;
-      border: solid 1px #aaaaaa;
-      background-color: green;
     }
 
     #kekka {
@@ -147,56 +70,60 @@
 </head>
 
 <body>
-  <h1>モンハンワールドの武器の攻撃力の期待値(補正込みでの攻撃力の目安)を算出します</h1>
-  <article>
-    ノリで作りました。入力した後フォーカスを変える(もう片方をタップしたり)とjavascriptが動いて期待値が表示されます。
-  </article>
-  <table>
-    <tr>
-      <td>基本攻撃力：</td>
-      <td><input type="text" id="damage" value=""></td>
-    </tr>
-    <tr>
-      <td>会心(%)：</td>
-      <td><input type="text" id="kaishin" value=""></td>
-    </tr>
-    <tr>
-      <td>切れ味：</td>
-      <td><select id="kireaji">
-          <option value="50">赤(0.5)</option>
-          <option value="75">橙(0.75)</option>
-          <option value="100">黄(1.0)</option>
-          <option value="105" selected>緑(1.05)</option>
-          <option value="125">青(1.25)</option>
-          <option value="132">白(1.32)</option>
-          <option value="139">紫(1.39)</option>
-        </select>&nbsp;<span id="mihon">&nbsp;</span></td>
-    </tr>
-    <tr>
-      <td>超会心：</td>
-      <td>
-        <select id="chokaishin">
-          <option value="125">なし(1.25倍)</option>
-          <option value="130">レベル1(1.3倍)</option>
-          <option value="135">レベル2(1.35倍)</option>
-          <option value="140">レベル3(1.4倍)</option>
-        </select>
-      </td>
-    </tr>
-  </table>
-  <h2>期待値</h2>
-  <h3 id="kekka"></h3>
-  <div>
-    算出方法
-    <br>攻撃力 = 基本攻撃力 × 切れ味補正
-    <br>会心発生時攻撃力 = 攻撃力 × 会心時倍率
-    <br>期待値 = (攻撃力 × (100 - 会心率) + 会心発生時攻撃力 × 会心率) / 100
-    <br><span id="x"></span> = <span id="a"></span> × <span id="b"></span>
-    <br><span id="y"></span> = <span id="c"></span> × <span id="d"></span>
-    <br><span id="z"></span> = (<span id="e"></span> × (100 - <span id="f"></span>) + <span id="g"></span> × <span id="h"></span>) / 100
-  </div>
-  <footer class="footer padtop20">
-    <p class="cen">&copy; Copyright 2006 - <span id="year"></span> landwarrior All Rights Reserved.</p>
+  <main>
+    <div class="container">
+      <h5>モンハンワールドの武器の攻撃力の期待値(補正込みでの攻撃力の目安)を算出します</h5>
+      <article>
+        ノリで作りました。入力した後フォーカスを変える(もう片方をタップしたり)とjavascriptが動いて期待値が表示されます。
+      </article>
+      <div class="row">
+        <div class="input-field col m3">
+          <input id="damage" type="text">
+          <label for="damage">基本攻撃力</label>
+        </div>
+        <div class="input-field col m3">
+          <input id="kaishin" type="text">
+          <label for="kaishin">会心(%)</label>
+        </div>
+        <div class="input-field col m3">
+          <select id="kireaji">
+            <option value="50">赤(0.5)</option>
+            <option value="75">橙(0.75)</option>
+            <option value="100">黄(1.0)</option>
+            <option value="105" selected>緑(1.05)</option>
+            <option value="125">青(1.25)</option>
+            <option value="132">白(1.32)</option>
+            <option value="139">紫(1.39)</option>
+          </select>
+          <label>切れ味</label>
+        </div>
+        <div class="input-field col m3">
+          <select id="chokaishin">
+            <option value="125">なし(1.25倍)</option>
+            <option value="130">レベル1(1.3倍)</option>
+            <option value="135">レベル2(1.35倍)</option>
+            <option value="140">レベル3(1.4倍)</option>
+          </select>
+          <label>超会心</label>
+        </div>
+      </div>
+      <div class="center-align">
+        <h5>期待値</h5>
+        <h6 id="kekka"></h6>
+      </div>
+      <div>
+        算出方法
+        <br>攻撃力 = 基本攻撃力 × 切れ味補正
+        <br>会心発生時攻撃力 = 攻撃力 × 会心時倍率
+        <br>期待値 = (攻撃力 × (100 - 会心率) + 会心発生時攻撃力 × 会心率) / 100
+        <br><span id="x"></span> = <span id="a"></span> × <span id="b"></span>
+        <br><span id="y"></span> = <span id="c"></span> × <span id="d"></span>
+        <br><span id="z"></span> = (<span id="e"></span> × (100 - <span id="f"></span>) + <span id="g"></span> × <span id="h"></span>) / 100
+      </div>
+    </div>
+  </main>
+  <footer class="page-footer center-align transparent grey-text text-darken-4">
+    <p>&copy; Copyright 2006 - <span id="year"></span> landwarrior All Rights Reserved.</p>
   </footer>
 </body>
 

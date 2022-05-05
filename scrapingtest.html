@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>テストページ</title>
+  <script src="js/jquery.min.js"></script>
+  <script>
+    $(function() {
+      $.ajax({
+        type: "GET",
+        url: "https://news.yahoo.co.jp",
+        headers: {
+          "Access-Control-Allow-Origin": "*"
+        }
+      }).done(function(obj) {
+        console.log(obj);
+      });
+
+    })
+  </script>
+</head>
+<body>
+  <h1>これを表示した段階で動いてるんだなこれが</h1>
+  <div>
+    やっぱCORSが邪魔してアクセスできないわ
+  </div>
+</body>
+</html>

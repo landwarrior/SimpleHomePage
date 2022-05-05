@@ -1,15 +1,4 @@
-function createLinkItems(list, clsname) {
-    var html = '';
-
-    for (var i = 0; i <Object.keys(list).length; i++) {
-        html += '<div class="col-xs-12 col-sm-6 col-md-3">';
-        html += '<a href="' + list[i].url + '">';
-        html += '<div class="bghovgrey trans05 pada">' + list[i].name + '</div>';
-        html += '</a></div>';
-    }
-    $('.' + clsname).html(html);
-}
-$(function() {
+window.addEventListener('DOMContentLoaded', () => {
     createLinkItems(oosakaList, 'oosakaList');
     createLinkItems(othersList, 'othersList');
     createLinkItems(makerList, 'makerList');
@@ -23,11 +12,25 @@ $(function() {
     createLinkItems(ibarakiList, 'ibarakiList');
 });
 
-var oosakaList = [
+/**
+ *
+ * @param {Array} list
+ * @param {string} id
+ */
+function createLinkItems(list, id) {
+    let html = '';
+
+    for (const data of list) {
+        html += `<div class="col xl3"><a href="${data.url}" class="collection-item">${data.name}</a></div>`;
+    }
+    document.getElementById(id).innerHTML = html;
+}
+
+const oosakaList = [
     {'url': 'http://osaka-greencanyon.com/', 'name': 'CQB FIELD BUDDY'},
     {'url': 'http://www.cqb-buddy.com/', 'name': 'グリーンキャニオン'},
 ];
-var othersList = [
+const othersList = [
     {'url': 'http://www.militaryblog.jp/', 'name': 'ミリタリーブログ'},
     {'url': 'http://www.access-overseas.com/', 'name': 'アクセスオーバーシーズ'},
     {'url': 'http://vtg.jp/', 'name': 'Volk Tactical Gear'},
@@ -51,7 +54,7 @@ var othersList = [
     {'url': 'http://wileyx.jp/', 'name': 'Wiley X'},
     {'url': 'http://surefire.jp/', 'name': 'sure fire'},
 ];
-var makerList = [
+const makerList = [
     {'url': 'http://www.systema-engineering.com/', 'name': 'SYSTEMA'},
     {'url': 'http://www.tokyo-marui.co.jp/', 'name': '東京マルイ'},
     {'url': 'http://www.ksc-guns.co.jp/', 'name': 'KSC'},
@@ -95,7 +98,7 @@ var makerList = [
     {'url': 'http://www.genesis-web.jp/', 'name': 'ジェネシス'},
     {'url': 'http://flyye.com/', 'name': 'FlyyeIndustries'},
 ];
-var shopList = [
+const shopList = [
     {'url': 'http://www.magnumshop-mugen.co.jp/','name': 'マグナムショップむげん'},
     {'url': 'http://la-gunshop.com/','name': 'LAホビーショップ'},
     {'url': 'http://www.first-jp.com/','name': 'ガンショップFIRST'},
@@ -202,7 +205,7 @@ var shopList = [
     {'url': 'http://miu-airsoft.com/','name': 'M.I.U AIRSOFT'},
     {'url': 'http://www.assault-shop.com/','name': 'GUN SHOP アサルト'},
 ];
-var chibaList = [
+const chibaList = [
     {'url': 'http://splash-bb.com/splashmain/', 'name': 'SPLASH'},
     {'url': 'http://www.sky.sannet.ne.jp/pintail/bb-jungle/bbjungle.htm', 'name': 'BBJUNGLE'},
     {'url': 'http://forest-union.jp/', 'name': 'フォレストユニオン'},
@@ -225,26 +228,26 @@ var chibaList = [
     {'url': 'http://ck-f.jp/', 'name': 'CKF'},
     {'url': 'http://www.ash-rockfield.com/', 'name': 'アッシュロックフィールド'},
 ];
-var tokyoList = [
+const tokyoList = [
     {'url': 'http://ibf.kowlooncity0801.com/', 'name': '九龍迷宮街区'},
     {'url': 'http://svg-ops.jp/', 'name': 'OPS'},
 ];
-var kanagawaList = [
+const kanagawaList = [
     {'url': 'http://www.sagamiko-resort.jp/', 'name': 'プレジャーフォレスト'},
     {'url': 'http://minmori.com/', 'name': 'みんなの森'},
 ];
-var saitamaList = [
+const saitamaList = [
     {'url': 'http://www.desertstorm-kawagoe.com/', 'name': 'デザートストーム川越'},
     {'url': 'http://www.code7.jp/', 'name': 'Code7'},
     {'url': 'http://sister-bf.com/', 'name': 'SISTER'},
 ];
-var yamanashiList = [
+const yamanashiList = [
     {'url': 'http://blog.livedoor.jp/agito_ktec/', 'name': 'AGITO'},
 ];
-var gifuList = [
+const gifuList = [
     {'url': 'http://hqt.jp/', 'name': 'HQ東海'},
 ];
-var ibarakiList = [
+const ibarakiList = [
     {'url': 'http://www.be-max.co.jp/grandslam/', 'name': 'グランドスラム'},
     {'url': 'http://www.airgun-sniper.com/', 'name': 'スナイパー'},
     {'url': 'http://www.tokku-switch.jp/', 'name': '特殊作戦群区'},
