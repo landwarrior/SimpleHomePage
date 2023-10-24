@@ -1,4 +1,37 @@
-html, body {
-  font-family: 'Nunito', 'Noto Sans JP', sans-serif;
-  letter-spacing: .1rem;
+@media screen and (max-width: 600px) {
+    .brand-logo {
+        font-size: 1.5rem !important;
+    }
+    h1 {
+        font-size: 2rem !important;
+    }
+    h2 {
+      font-size: 1.85rem !important;
+    }
+    h3 {
+      font-size: 1.7rem !important;
+    }
+    h4 {
+      font-size: 1.55rem !important;
+    }
+    h5 {
+      font-size: 1.4rem !important;
+    }
+    h6 {
+      font-size: 1.25rem !important;
+    }
+}
+
+html,
+body {
+    font-family: 'Nunito', 'Noto Sans JP', sans-serif;
+    color: #4b4b4b;
+    background-color: #eee;
+    letter-spacing: 0.1rem;
+}
+[v-cloak] {
+    display: none;
+}
+.img-width {
+    width: 100%;
 }

@@ -1,12 +1,25 @@
-window.addEventListener('DOMContentLoaded', () => {
-    const tblDOM = document.getElementById('log');
-    let tblHtml = '';
-    for (const log of logData) {
-        tblHtml += `<tr><td>${log.date}</td><td>${log.value}</td></tr>`;
-    }
-    tblDOM.innerHTML = tblHtml;
-});
+import FooterComp from './FooterComp.js';
+import HeaderComp from './HeaderComp.js';
 
-const logData = [
-    {'date': '2022/05/05', 'value': 'ホームページリニューアル'},
-];
+window.addEventListener('DOMContentLoaded', () => {
+    Vue.createApp({
+        data() {
+            return {
+                active_title: '',
+            };
+        },
+        components: { HeaderComp },
+    }).mount('#header');
+
+    Vue.createApp({
+        components: { FooterComp },
+    }).mount('#footer');
+
+    Vue.createApp({
+        data() {
+            return {};
+        },
+    }).mount('#main-contents');
+
+    M.AutoInit();
+});

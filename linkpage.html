@@ -3,8 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Survivalな理想郷｜リンク集</title>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
@@ -12,64 +11,69 @@
   <link href="css/materialize.min.css" rel="stylesheet">
   <script defer src="js/materialize.min.js"></script>
   <link href="css/font.css" rel="stylesheet">
+  <script defer src="js/vue.global.prod.js"></script>
   <script defer src="js/deleteAdvertising.js"></script>
-  <script defer src="js/main.js"></script>
-  <script defer src="js/link.js"></script>
+  <script defer type="module" src="js/link.js"></script>
 </head>
 
 <body>
-  <header>
-    <div class="navbar-fixed">
-      <nav class="teal">
-        <div class="nav-wrapper">
-          <a href="/" class="brand-logo" style="padding-left: 10px">Survivalな理想郷</a>
-          <a href="#" data-target="mobile-menu" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-          <ul class="right hide-on-med-and-down">
-            <li><a href="toygun.html"><i class="material-icons left">list</i>トイガンインプレ</a></li>
-            <li><a href="linkpage.html"><i class="material-icons left">link</i>リンク集</a></li>
-            <li><a href="http://whippoorwill.militaryblog.jp/" target="_blank"><i class="material-icons left">web</i>ミリブロ</a></li>
-            <li><a href="https://www.youtube.com/channel/UCzW1XRS2c-p5v4w7Nn1bcFQ" target="_blank"><i class="material-icons left">tv</i>Youtube</a></li>
-          </ul>
+  <div id="header" v-cloak>
+    <header-comp :active_title="active_title"></header-comp>
+  </div>
+  <div id="main-contents" v-cloak>
+    <main>
+      <div class="container">
+        <h1>リンク集</h1>
+        <h4>メーカー</h4>
+        <div class="row collection white">
+          <div class="col xl3" v-for="data in makerList"><a :href="data.url" class="collection-item">{{ data.name }}</a></div>
         </div>
-      </nav>
-    </div>
-    <ul class="sidenav" id="mobile-menu">
-      <li><a href="toygun.html">トイガンインプレ</a></li>
-      <li><a href="linkpage.html">リンク集</a></li>
-      <li><a href="http://whippoorwill.militaryblog.jp/">ミリブロ</a></li>
-      <li><a href="https://www.youtube.com/channel/UCzW1XRS2c-p5v4w7Nn1bcFQ">Youtube</a></li>
-    </ul>
-  </header>
-  <main>
-    <div class="container">
-      <h1>リンク集</h1>
-      <h4>メーカー</h4>
-      <div id="makerList" class="row collection"></div>
-      <h4>ショップ</h4>
-      <div id="shopList" class="row collection"></div>
-      <h4>その他</h4>
-      <div id="othersList" class="row collection"></div>
-      <h4>千葉のフィールド</h4>
-      <div id="chibaList" class="row collection"></div>
-      <h4>東京のフィールド</h4>
-      <div id="tokyoList" class="row collection"></div>
-      <h4>神奈川のフィールド</h4>
-      <div id="kanagawaList" class="row collection"></div>
-      <h4>埼玉のフィールド</h4>
-      <div id="saitamaList" class="row collection"></div>
-      <h4>山梨のフィールド</h4>
-      <div id="yamanashiList" class="row collection"></div>
-      <h4>岐阜のフィールド</h4>
-      <div id="gifuList" class="row collection"></div>
-      <h4>茨城のフィールド</h4>
-      <div id="ibarakiList" class="row collection"></div>
-      <h4>大阪のフィールド</h4>
-      <div id="oosakaList" class="row collection"></div>
-    </div>
-  </main>
-  <footer class="page-footer center-align transparent grey-text text-darken-4">
-    <p>&copy; Copyright 2006 - <span id="year"></span> landwarrior All Rights Reserved.</p>
-  </footer>
+        <h4>ショップ</h4>
+        <div class="row collection white">
+          <div class="col xl3" v-for="data in shopList"><a :href="data.url" class="collection-item">{{ data.name }}</a></div>
+        </div>
+        <h4>その他</h4>
+        <div class="row collection white">
+          <div class="col xl3" v-for="data in othersList"><a :href="data.url" class="collection-item">{{ data.name }}</a></div>
+        </div>
+        <h4>千葉のフィールド</h4>
+        <div class="row collection white">
+          <div class="col xl3" v-for="data in chibaList"><a :href="data.url" class="collection-item">{{ data.name }}</a></div>
+        </div>
+        <h4>東京のフィールド</h4>
+        <div class="row collection white">
+          <div class="col xl3" v-for="data in tokyoList"><a :href="data.url" class="collection-item">{{ data.name }}</a></div>
+        </div>
+        <h4>神奈川のフィールド</h4>
+        <div class="row collection white">
+          <div class="col xl3" v-for="data in kanagawaList"><a :href="data.url" class="collection-item">{{ data.name }}</a></div>
+        </div>
+        <h4>埼玉のフィールド</h4>
+        <div class="row collection white">
+          <div class="col xl3" v-for="data in saitamaList"><a :href="data.url" class="collection-item">{{ data.name }}</a></div>
+        </div>
+        <h4>山梨のフィールド</h4>
+        <div class="row collection white">
+          <div class="col xl3" v-for="data in yamanashiList"><a :href="data.url" class="collection-item">{{ data.name }}</a></div>
+        </div>
+        <h4>岐阜のフィールド</h4>
+        <div class="row collection white">
+          <div class="col xl3" v-for="data in gifuList"><a :href="data.url" class="collection-item">{{ data.name }}</a></div>
+        </div>
+        <h4>茨城のフィールド</h4>
+        <div class="row collection white">
+          <div class="col xl3" v-for="data in ibarakiList"><a :href="data.url" class="collection-item">{{ data.name }}</a></div>
+        </div>
+        <h4>大阪のフィールド</h4>
+        <div class="row collection white">
+          <div class="col xl3" v-for="data in oosakaList"><a :href="data.url" class="collection-item">{{ data.name }}</a></div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <div id="footer" v-cloak>
+    <footer-comp></footer-comp>
+  </div>
 </body>
 
 </html>
