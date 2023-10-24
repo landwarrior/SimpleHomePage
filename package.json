@@ -18,7 +18,9 @@
   },
   "homepage": "https://github.com/landwarrior/SimpleHomePage#readme",
   "devDependencies": {
-    "eslint": "^8.14.0",
+    "eslint": "^8.52.0",
+    "eslint-plugin-vue": "^9.18.0",
+    "htmlhint": "^1.1.4",
     "prettier": "^2.6.2"
   }
 }
