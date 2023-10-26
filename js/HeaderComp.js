@@ -1,11 +1,9 @@
 export default {
     props: {
         active_title: String,
-        menu_list: Array,
     },
     data() {
         return {
-            active_title: '',
             menu_list: [
                 {
                     href: 'toygun.html',
