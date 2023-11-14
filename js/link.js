@@ -26,7 +26,6 @@ window.addEventListener('DOMContentLoaded', () => {
                 tokyoList,
                 kanagawaList,
                 saitamaList,
-                yamanashiList,
                 gifuList,
                 ibarakiList,
             };
@@ -36,10 +35,7 @@ window.addEventListener('DOMContentLoaded', () => {
     M.AutoInit();
 });
 
-const oosakaList = [
-    { url: 'http://osaka-greencanyon.com/', name: 'CQB FIELD BUDDY' },
-    { url: 'http://www.cqb-buddy.com/', name: 'グリーンキャニオン' },
-];
+const oosakaList = [{ url: 'http://www.cqb-buddy.com/', name: 'CQB FIELD BUDDY' }];
 const othersList = [
     { url: 'http://www.militaryblog.jp/', name: 'ミリタリーブログ' },
     { url: 'http://www.access-overseas.com/', name: 'アクセスオーバーシーズ' },
@@ -217,10 +213,11 @@ const shopList = [
 ];
 const chibaList = [
     { url: 'http://splash-bb.com/splashmain/', name: 'SPLASH' },
-    { url: 'http://www.sky.sannet.ne.jp/pintail/bb-jungle/bbjungle.htm', name: 'BBJUNGLE' },
+    { url: 'https://pintail.wixsite.com/bbjungle/', name: 'BB-JUNGLE' },
     { url: 'http://forest-union.jp/', name: 'フォレストユニオン' },
     { url: 'http://desert-union.jp/', name: 'デザートユニオン' },
     { url: 'http://desert-union.jp/union-base', name: 'ユニオンベース' },
+    { url: 'https://stadium-union.com/', name: 'UNION STADIUM' },
     { url: 'http://met-union.com/', name: 'METユニオン' },
     { url: 'http://forest-union.jp/u-box', name: 'U-BOX' },
     { url: 'http://head-shot.jp/', name: 'HEADSHOT' },
@@ -230,31 +227,14 @@ const chibaList = [
     { url: 'http://savas-m2ts.net/', name: 'SAVAS' },
     { url: 'http://www.village-one.org/', name: 'ビレッジワン' },
     { url: 'http://whitebase-sgf.com/', name: 'ホワイトベース' },
-    { url: 'http://beam-sg.co.jp/', name: 'beam' },
-    { url: 'http://infini-sg.jp/wordpress/', name: 'INFINI' },
-    { url: 'http://survival-raid.com/', name: 'RAID' },
-    { url: 'http://www.sgf-vision.jp/', name: 'VISION' },
     { url: 'http://www.no9-co.jp/', name: 'No.9' },
-    { url: 'http://ck-f.jp/', name: 'CKF' },
     { url: 'http://www.ash-rockfield.com/', name: 'アッシュロックフィールド' },
 ];
 const tokyoList = [
-    { url: 'http://ibf.kowlooncity0801.com/', name: '九龍迷宮街区' },
+    { url: 'https://www.ibf9.com/', name: 'IBF9' },
     { url: 'http://svg-ops.jp/', name: 'OPS' },
 ];
-const kanagawaList = [
-    { url: 'http://www.sagamiko-resort.jp/', name: 'プレジャーフォレスト' },
-    { url: 'http://minmori.com/', name: 'みんなの森' },
-];
-const saitamaList = [
-    { url: 'http://www.desertstorm-kawagoe.com/', name: 'デザートストーム川越' },
-    { url: 'http://www.code7.jp/', name: 'Code7' },
-    { url: 'http://sister-bf.com/', name: 'SISTER' },
-];
-const yamanashiList = [{ url: 'http://blog.livedoor.jp/agito_ktec/', name: 'AGITO' }];
-const gifuList = [{ url: 'http://hqt.jp/', name: 'HQ東海' }];
-const ibarakiList = [
-    { url: 'http://www.be-max.co.jp/grandslam/', name: 'グランドスラム' },
-    { url: 'http://www.airgun-sniper.com/', name: 'スナイパー' },
-    { url: 'http://www.tokku-switch.jp/', name: '特殊作戦群区' },
-];
+const kanagawaList = [{ url: 'http://minmori.com/', name: 'みんなの森' }];
+const saitamaList = [{ url: 'http://sister-bf.com/', name: 'SISTER' }];
+const gifuList = [{ url: 'http://hqt.jp/', name: 'HQトラッド' }];
+const ibarakiList = [{ url: 'http://www.be-max.co.jp/grandslam/', name: 'グランドスラム' }];
