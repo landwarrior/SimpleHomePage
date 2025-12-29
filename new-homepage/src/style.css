@@ -1,81 +1,116 @@
 @import 'tailwindcss';
 
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Nunito', 'Noto Sans JP', sans-serif;
+  letter-spacing: 0.1rem;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+/* ダークモード対応 */
+.dark {
+  color-scheme: dark;
 }
-a:hover {
-  color: #535bf2;
+
+[v-cloak] {
+  display: none;
+}
+
+.img-width {
+  width: 100%;
 }
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
   min-height: 100vh;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* ニューモーフィズム（Neumorphism）スタイル */
+
+/* 浮き上がった効果（Raised） */
+.neu-raised {
+  background: #e0e0e0;
+  box-shadow:
+    8px 8px 16px #bebebe,
+    -8px -8px 16px #ffffff;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.neu-raised-sm {
+  background: #e0e0e0;
+  box-shadow:
+    4px 4px 8px #bebebe,
+    -4px -4px 8px #ffffff;
 }
 
-.card {
-  padding: 2em;
+.neu-raised-lg {
+  background: #e0e0e0;
+  box-shadow:
+    12px 12px 24px #bebebe,
+    -12px -12px 24px #ffffff;
 }
 
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+/* 埋め込まれた効果（Pressed/Inset） */
+.neu-pressed {
+  background: #e0e0e0;
+  box-shadow:
+    inset 8px 8px 16px #bebebe,
+    inset -8px -8px 16px #ffffff;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.neu-pressed-sm {
+  background: #e0e0e0;
+  box-shadow:
+    inset 4px 4px 8px #bebebe,
+    inset -4px -4px 8px #ffffff;
+}
+
+.neu-pressed-lg {
+  background: #e0e0e0;
+  box-shadow:
+    inset 12px 12px 24px #bebebe,
+    inset -12px -12px 24px #ffffff;
+}
+
+/* ホバー時の効果 */
+.neu-raised:hover {
+  box-shadow:
+    6px 6px 12px #bebebe,
+    -6px -6px 12px #ffffff;
+}
+
+.neu-pressed:hover {
+  box-shadow:
+    inset 6px 6px 12px #bebebe,
+    inset -6px -6px 12px #ffffff;
+}
+
+/* アクティブ時の効果（押し込まれた感じ） */
+.neu-raised:active {
+  box-shadow:
+    inset 4px 4px 8px #bebebe,
+    inset -4px -4px 8px #ffffff;
+}
+
+/* 背景色のバリエーション */
+.neu-bg-light {
+  background: #f5f5f5;
+}
+
+.neu-bg-gray {
+  background: #e0e0e0;
+}
+
+.neu-bg-dark {
+  background: #d0d0d0;
+}
+
+/* 角丸付き */
+.neu-rounded {
+  border-radius: 1rem;
+}
+
+.neu-rounded-lg {
+  border-radius: 1.5rem;
+}
+
+.neu-rounded-xl {
+  border-radius: 2rem;
 }
