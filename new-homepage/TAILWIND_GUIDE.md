@@ -120,8 +120,10 @@ Tailwind CSSは「ユーティリティファースト」のCSSフレームワ�
 
 ### オプション3: グラデーション
 ```vue
-<header class="bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-md">
+<header class="bg-linear-to-r from-blue-600 to-purple-600 text-white shadow-md">
 ```
+
+**注意**: Tailwind CSS v4では、`bg-gradient-to-r`が`bg-linear-to-r`に変更されました。
 
 ### オプション4: 透明でスクロール時に固定
 ```vue

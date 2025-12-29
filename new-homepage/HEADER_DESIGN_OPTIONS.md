@@ -134,7 +134,7 @@
 
 ### オプション3: グラデーション背景
 ```vue
-<header class="bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-md">
+<header class="bg-linear-to-r from-blue-600 to-purple-600 text-white shadow-md">
   <!-- ロゴ -->
   <a href="/" class="text-xl font-bold hover:text-blue-100 transition-colors">
   
