@@ -1,29 +1,29 @@
 <script setup>
-import { ref } from 'vue'
+import { ref } from 'vue';
 
 const props = defineProps({
   currentTheme: {
     type: String,
     required: true
   }
-})
+});
 
-const emit = defineEmits(['update-theme'])
+const emit = defineEmits(['update-theme']);
 
-const showMenu = ref(false)
+const showMenu = ref(false);
 
 const setTheme = (theme) => {
-  emit('update-theme', theme)
-  showMenu.value = false
-}
+  emit('update-theme', theme);
+  showMenu.value = false;
+};
 
 const toggleMenu = () => {
-  showMenu.value = !showMenu.value
-}
+  showMenu.value = !showMenu.value;
+};
 
 const closeMenu = () => {
-  showMenu.value = false
-}
+  showMenu.value = false;
+};
 
 // click-outside ディレクティブ
 const vClickOutside = {
@@ -31,20 +31,20 @@ const vClickOutside = {
     el.clickOutsideEvent = function (event) {
       // クリックされた要素がメニュー内でない場合のみ閉じる
       if (!(el === event.target || el.contains(event.target))) {
-        binding.value()
+        binding.value();
       }
-    }
+    };
     // 少し遅延させてイベントリスナーを追加（現在のクリックイベントが処理されるまで待つ）
     setTimeout(() => {
-      document.addEventListener('click', el.clickOutsideEvent)
-    }, 0)
+      document.addEventListener('click', el.clickOutsideEvent);
+    }, 0);
   },
   unmounted(el) {
     if (el.clickOutsideEvent) {
-      document.removeEventListener('click', el.clickOutsideEvent)
+      document.removeEventListener('click', el.clickOutsideEvent);
     }
   }
-}
+};
 </script>
 
 <template>

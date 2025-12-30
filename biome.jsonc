@@ -172,13 +172,7 @@
             }
         },
         // リンターの対象ファイル: すべてのファイル（node_modulesとdistを除く）
-        "includes": [
-            "**",
-            "!node_modules/**",
-            "!dist/**",
-            "!new-homepage/node_modules/**",
-            "!new-homepage/dist/**"
-        ]
+        "includes": ["**", "!node_modules/**", "!dist/**", "!new-homepage/node_modules/**", "!new-homepage/dist/**"]
     },
     // === JavaScript設定 ===
     "javascript": {
@@ -222,10 +216,7 @@
     "overrides": [
         // Vueファイル用の設定
         {
-            "includes": [
-                "*.vue",
-                "**/*.vue"
-            ],
+            "includes": ["*.vue", "**/*.vue"],
             "javascript": {
                 "globals": []
             },
@@ -241,15 +232,10 @@
         },
         // new-homepageディレクトリ内のファイル用の設定
         {
-            "includes": [
-                "new-homepage/**/*.{js,mjs,cjs,vue}"
-            ],
+            "includes": ["new-homepage/**/*.{js,mjs,cjs,vue}"],
             "javascript": {
                 // Vueとflatpickrをグローバル変数として認識
-                "globals": [
-                    "Vue",
-                    "flatpickr"
-                ]
+                "globals": ["Vue", "flatpickr"]
             },
             "linter": {
                 "rules": {
@@ -288,9 +274,7 @@
         },
         // new-homepageディレクトリ内のVueファイル専用の設定
         {
-            "includes": [
-                "new-homepage/**/*.vue"
-            ],
+            "includes": ["new-homepage/**/*.vue"],
             "linter": {
                 "rules": {
                     // Vueの<script setup>では、テンプレート内で使用される変数が

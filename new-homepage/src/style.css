@@ -1,5 +1,8 @@
 @import 'tailwindcss';
 
+/* ダークモードをクラスベースに設定（.darkクラスがhtml要素にある場合に適用） */
+@custom-variant dark (.dark &);
+
 :root {
   font-family: 'Nunito', 'Noto Sans JP', sans-serif;
   letter-spacing: 0.1rem;

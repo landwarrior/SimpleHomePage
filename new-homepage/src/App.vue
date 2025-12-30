@@ -1,11 +1,11 @@
 <script setup>
-import { ref } from 'vue'
-import FooterComp from './components/FooterComp.vue'
-import HeaderComp from './components/HeaderComp.vue'
-import { useTheme } from './composables/useTheme'
+import { ref } from 'vue';
+import FooterComp from './components/FooterComp.vue';
+import HeaderComp from './components/HeaderComp.vue';
+import { useTheme } from './composables/useTheme';
 
-const activeTitle = ref('')
-const { theme, updateTheme } = useTheme()
+const activeTitle = ref('');
+const { theme, updateTheme } = useTheme();
 </script>
 
 <template>
