@@ -1,4 +1,4 @@
-import { nextTick, onMounted, onUnmounted, ref, watch, type Ref } from 'vue';
+import { nextTick, onMounted, onUnmounted, type Ref, ref, watch } from 'vue';
 
 // テーマの型定義
 export type Theme = 'light' | 'dark' | 'system';
@@ -10,6 +10,11 @@ export type Theme = 'light' | 'dark' | 'system';
 export function useTheme() {
     const theme: Ref<Theme> = ref<Theme>('system');
     let systemThemeHandler: ((e: MediaQueryListEvent) => void) | null = null;
+    // MediaQueryListインスタンスを保持する必要がある理由：
+    // removeEventListenerでリスナーを削除する際、addEventListenerで登録したのと同じ
+    // MediaQueryListインスタンスを参照する必要があるため。
+    // 新しいインスタンスを作成してremoveEventListenerを呼んでも、実際に登録されたリスナーは削除されない。
+    let mediaQuery: MediaQueryList | null = null;
 
     /**
      * localStorageから保存されているテーマ設定を取得
@@ -65,9 +70,19 @@ export function useTheme() {
     /**
      * システムのカラースキーム設定変更を監視
      * 'system'モードが選択されている場合のみ、システム設定の変更に追従
+     *
+     * 注意：この関数は複数回呼ばれる可能性があるため（例：updateThemeで'system'に変更するたび）、
+     * 既存のリスナーを削除してから新しいリスナーを登録する必要がある。
+     * これをしないと、同じイベントに対して複数のリスナーが登録され、メモリリークや予期しない動作の原因となる。
      */
     const watchSystemTheme = (): void => {
-        const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+        // 既存のリスナーを削除してから新しいリスナーを登録
+        // これにより、リスナーの重複登録を防ぐ
+        unwatchSystemTheme();
+
+        // MediaQueryListインスタンスを作成して保持
+        // 後でremoveEventListenerで削除する際に、この同じインスタンスが必要
+        mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
         systemThemeHandler = (e: MediaQueryListEvent) => {
             // 'system'モードの場合のみ、システム設定の変更に追従
             if (theme.value === 'system') {
@@ -84,12 +99,20 @@ export function useTheme() {
 
     /**
      * システムテーマの監視を停止
+     *
+     * 重要：removeEventListenerでリスナーを削除するには、addEventListenerで登録したのと同じ
+     * MediaQueryListインスタンスとハンドラー関数の参照が必要。
+     * そのため、watchSystemTheme()で作成したmediaQueryインスタンスを保持しておき、
+     * ここでその同じインスタンスを使って削除する必要がある。
+     * 新しいインスタンスを作成してremoveEventListenerを呼んでも、実際のリスナーは削除されない。
      */
     const unwatchSystemTheme = (): void => {
-        if (systemThemeHandler) {
-            const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+        if (systemThemeHandler && mediaQuery) {
+            // 保持しているMediaQueryListインスタンスを使ってリスナーを削除
+            // これが正しく動作するためには、addEventListenerで登録したのと同じインスタンスが必要
             mediaQuery.removeEventListener('change', systemThemeHandler);
             systemThemeHandler = null;
+            mediaQuery = null;
         }
     };
 
