@@ -28,9 +28,15 @@ const closeMenu = (): void => {
 // click-outside ディレクティブの型定義
 interface ClickOutsideElement extends HTMLElement {
   clickOutsideEvent?: (event: MouseEvent) => void;
+  // メモリーリーク対策: setTimeoutのIDを保存して、unmounted時にクリアできるようにする
+  clickOutsideTimeout?: number;
 }
 
 // click-outside ディレクティブ
+// メモリーリーク対策の実装:
+// - setTimeoutでイベントリスナーの追加を遅延させる（現在のクリックイベントが処理されるまで待つ）
+// - タイムアウトIDを保存し、unmounted時にクリアすることで、コンポーネントがアンマウントされた後に
+//   タイムアウトが発火しても孤立したイベントリスナーが追加されないようにする
 const vClickOutside = {
   mounted(el: ClickOutsideElement, binding: { value: () => void }) {
     el.clickOutsideEvent = function (event: MouseEvent) {
@@ -40,13 +46,30 @@ const vClickOutside = {
       }
     };
     // 少し遅延させてイベントリスナーを追加（現在のクリックイベントが処理されるまで待つ）
-    setTimeout(() => {
-      document.addEventListener('click', el.clickOutsideEvent!);
+    // メモリーリーク対策: タイムアウトIDを保存（unmounted時にクリアするため）
+    el.clickOutsideTimeout = window.setTimeout(() => {
+      // メモリーリーク対策: タイムアウトが発火した時点で要素がまだDOMに存在するか確認
+      // コンポーネントがアンマウントされた後にタイムアウトが発火した場合、孤立したリスナーを追加しない
+      if (document.body.contains(el) && el.clickOutsideEvent) {
+        document.addEventListener('click', el.clickOutsideEvent);
+      }
+      // タイムアウトIDをクリア
+      el.clickOutsideTimeout = undefined;
     }, 0);
   },
   unmounted(el: ClickOutsideElement) {
+    // メモリーリーク対策: タイムアウトがまだ実行されていない場合はクリア
+    // コンポーネントがタイムアウト発火前にアンマウントされた場合、タイムアウトをキャンセルして
+    // 孤立したイベントリスナーが追加されないようにする
+    if (el.clickOutsideTimeout !== undefined) {
+      clearTimeout(el.clickOutsideTimeout);
+      el.clickOutsideTimeout = undefined;
+    }
+    // イベントリスナーが追加されている場合は削除
+    // メモリーリーク対策: 追加されたリスナーを確実に削除し、参照をクリアする
     if (el.clickOutsideEvent) {
       document.removeEventListener('click', el.clickOutsideEvent);
+      el.clickOutsideEvent = undefined;
     }
   },
 };
