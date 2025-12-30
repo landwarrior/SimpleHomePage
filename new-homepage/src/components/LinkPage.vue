@@ -1,5 +1,6 @@
-<script setup>
-import { useLinks } from '../composables/useLinks'
+<script setup lang="ts">
+import type { Link } from '../composables/useLinks';
+import { useLinks } from '../composables/useLinks';
 
 const {
     makerList,
@@ -12,10 +13,16 @@ const {
     gifuList,
     ibarakiList,
     oosakaList,
-} = useLinks()
+} = useLinks();
+
+// リンクカテゴリの型定義
+interface LinkCategory {
+    title: string;
+    list: Link[];
+}
 
 // リンクカテゴリの定義
-const linkCategories = [
+const linkCategories: LinkCategory[] = [
     { title: 'メーカー', list: makerList },
     { title: 'ショップ', list: shopList },
     { title: 'その他', list: othersList },
@@ -26,7 +33,7 @@ const linkCategories = [
     { title: '岐阜のフィールド', list: gifuList },
     { title: '茨城のフィールド', list: ibarakiList },
     { title: '大阪のフィールド', list: oosakaList },
-]
+];
 </script>
 
 <template>
@@ -40,14 +47,7 @@ const linkCategories = [
                     {{ category.title }}
                 </h4>
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-                    <a
-                        v-for="link in category.list"
-                        :key="link.url"
-                        :href="link.url"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="neu-btn-raised neu-btn-raised-sm neu-rounded px-4 py-3 text-sm text-gray-700 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400 transition-colors text-center break-words"
-                    >
+                    <a v-for="link in category.list" :key="link.url" :href="link.url" target="_blank" rel="noopener noreferrer" class="neu-btn-raised neu-btn-raised-sm neu-rounded px-4 py-3 text-sm text-gray-700 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400 transition-colors text-center wrap-break-word">
                         {{ link.name }}
                     </a>
                 </div>

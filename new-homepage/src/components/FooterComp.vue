@@ -1,12 +1,12 @@
-<script setup>
-import { onMounted, ref } from 'vue'
+<script setup lang="ts">
+import { onMounted, ref } from 'vue';
 
-const thisYear = ref('')
+const thisYear = ref<string>('');
 
 onMounted(() => {
-  const date = new Date()
-  thisYear.value = date.getFullYear()
-})
+  const date = new Date();
+  thisYear.value = date.getFullYear().toString();
+});
 </script>
 
 <template>

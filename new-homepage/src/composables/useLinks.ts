@@ -1,9 +1,13 @@
-import { ref } from 'vue'
+// リンクの型定義
+export interface Link {
+    url: string;
+    name: string;
+}
 
 // リンク集データ
-const oosakaList = [{ url: 'http://www.cqb-buddy.com/', name: 'CQB FIELD BUDDY' }]
+const oosakaList: Link[] = [{ url: 'http://www.cqb-buddy.com/', name: 'CQB FIELD BUDDY' }];
 
-const othersList = [
+const othersList: Link[] = [
     { url: 'http://www.militaryblog.jp/', name: 'ミリタリーブログ' },
     { url: 'http://www.access-overseas.com/', name: 'アクセスオーバーシーズ' },
     { url: 'http://vtg.jp/', name: 'Volk Tactical Gear' },
@@ -26,9 +30,9 @@ const othersList = [
     { url: 'http://www.oakley.com/', name: 'OAKLEY' },
     { url: 'http://wileyx.jp/', name: 'Wiley X' },
     { url: 'http://surefire.jp/', name: 'sure fire' },
-]
+];
 
-const makerList = [
+const makerList: Link[] = [
     { url: 'http://www.systema-engineering.com/', name: 'SYSTEMA' },
     { url: 'http://www.tokyo-marui.co.jp/', name: '東京マルイ' },
     { url: 'http://www.ksc-guns.co.jp/', name: 'KSC' },
@@ -71,9 +75,9 @@ const makerList = [
     { url: 'http://www.eaglemodel.com/', name: 'イーグルフォース' },
     { url: 'http://www.genesis-web.jp/', name: 'ジェネシス' },
     { url: 'http://flyye.com/', name: 'FlyyeIndustries' },
-]
+];
 
-const shopList = [
+const shopList: Link[] = [
     { url: 'http://www.magnumshop-mugen.co.jp/', name: 'マグナムショップむげん' },
     { url: 'http://la-gunshop.com/', name: 'LAホビーショップ' },
     { url: 'http://www.first-jp.com/', name: 'ガンショップFIRST' },
@@ -179,9 +183,9 @@ const shopList = [
     { url: 'http://gunsrocxx.com/', name: 'ガンズロックス' },
     { url: 'http://miu-airsoft.com/', name: 'M.I.U AIRSOFT' },
     { url: 'http://www.assault-shop.com/', name: 'GUN SHOP アサルト' },
-]
+];
 
-const chibaList = [
+const chibaList: Link[] = [
     { url: 'http://splash-bb.com/splashmain/', name: 'SPLASH' },
     { url: 'https://pintail.wixsite.com/bbjungle/', name: 'BB-JUNGLE' },
     { url: 'http://forest-union.jp/', name: 'フォレストユニオン' },
@@ -199,20 +203,20 @@ const chibaList = [
     { url: 'http://whitebase-sgf.com/', name: 'ホワイトベース' },
     { url: 'http://www.no9-co.jp/', name: 'No.9' },
     { url: 'http://www.ash-rockfield.com/', name: 'アッシュロックフィールド' },
-]
+];
 
-const tokyoList = [
+const tokyoList: Link[] = [
     { url: 'https://www.ibf9.com/', name: 'IBF9' },
     { url: 'http://svg-ops.jp/', name: 'OPS' },
-]
+];
 
-const kanagawaList = [{ url: 'http://minmori.com/', name: 'みんなの森' }]
+const kanagawaList: Link[] = [{ url: 'http://minmori.com/', name: 'みんなの森' }];
 
-const saitamaList = [{ url: 'http://sister-bf.com/', name: 'SISTER' }]
+const saitamaList: Link[] = [{ url: 'http://sister-bf.com/', name: 'SISTER' }];
 
-const gifuList = [{ url: 'http://hqt.jp/', name: 'HQトラッド' }]
+const gifuList: Link[] = [{ url: 'http://hqt.jp/', name: 'HQトラッド' }];
 
-const ibarakiList = [{ url: 'http://www.be-max.co.jp/grandslam/', name: 'グランドスラム' }]
+const ibarakiList: Link[] = [{ url: 'http://www.be-max.co.jp/grandslam/', name: 'グランドスラム' }];
 
 export function useLinks() {
     return {
@@ -226,5 +230,5 @@ export function useLinks() {
         gifuList,
         ibarakiList,
         oosakaList,
-    }
+    };
 }

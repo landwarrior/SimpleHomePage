@@ -1,35 +1,40 @@
-import { nextTick, onMounted, onUnmounted, ref, watch } from 'vue';
+import { nextTick, onMounted, onUnmounted, ref, watch, type Ref } from 'vue';
+
+// テーマの型定義
+export type Theme = 'light' | 'dark' | 'system';
 
 /**
  * カラーモード（ダークモード/ライトモード）の切り替えを管理するComposable
  * Bootstrapのcolor-modes.jsを参考にしたVue.js実装
  */
 export function useTheme() {
-    const theme = ref('system');
-    let systemThemeHandler = null;
+    const theme: Ref<Theme> = ref<Theme>('system');
+    let systemThemeHandler: ((e: MediaQueryListEvent) => void) | null = null;
 
     /**
      * localStorageから保存されているテーマ設定を取得
-     * @returns {string|null} 保存されているテーマ（'light', 'dark', 'system'）またはnull
+     * @returns 保存されているテーマ（'light', 'dark', 'system'）またはnull
      */
-    const getStoredTheme = () => localStorage.getItem('theme');
+    const getStoredTheme = (): string | null => localStorage.getItem('theme');
 
     /**
      * テーマ設定をlocalStorageに保存
-     * @param {string} themeValue - 保存するテーマ（'light', 'dark', 'system'）
+     * @param themeValue - 保存するテーマ（'light', 'dark', 'system'）
      */
-    const setStoredTheme = (themeValue) => localStorage.setItem('theme', themeValue);
+    const setStoredTheme = (themeValue: Theme): void => {
+        localStorage.setItem('theme', themeValue);
+    };
 
     /**
      * 優先されるテーマを取得
      * 保存されているテーマがあればそれを返し、なければ'system'を返す
-     * @returns {string} 優先されるテーマ（'light', 'dark', 'system'）
+     * @returns 優先されるテーマ（'light', 'dark', 'system'）
      */
-    const getPreferredTheme = () => {
+    const getPreferredTheme = (): Theme => {
         const storedTheme = getStoredTheme();
         // 保存されているテーマがあればそれを返す
-        if (storedTheme) {
-            return storedTheme;
+        if (storedTheme && (storedTheme === 'light' || storedTheme === 'dark' || storedTheme === 'system')) {
+            return storedTheme as Theme;
         }
         // 保存されていない場合は'system'を返す（システム設定に従う）
         return 'system';
@@ -37,9 +42,9 @@ export function useTheme() {
 
     /**
      * テーマをHTML要素に適用
-     * @param {string} themeValue - 適用するテーマ（'light', 'dark', 'system'）
+     * @param themeValue - 適用するテーマ（'light', 'dark', 'system'）
      */
-    const applyTheme = (themeValue = theme.value) => {
+    const applyTheme = (themeValue: Theme = theme.value): void => {
         const html = document.documentElement;
 
         // まずdarkクラスを削除
@@ -61,9 +66,9 @@ export function useTheme() {
      * システムのカラースキーム設定変更を監視
      * 'system'モードが選択されている場合のみ、システム設定の変更に追従
      */
-    const watchSystemTheme = () => {
+    const watchSystemTheme = (): void => {
         const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-        systemThemeHandler = (e) => {
+        systemThemeHandler = (e: MediaQueryListEvent) => {
             // 'system'モードの場合のみ、システム設定の変更に追従
             if (theme.value === 'system') {
                 const html = document.documentElement;
@@ -80,7 +85,7 @@ export function useTheme() {
     /**
      * システムテーマの監視を停止
      */
-    const unwatchSystemTheme = () => {
+    const unwatchSystemTheme = (): void => {
         if (systemThemeHandler) {
             const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
             mediaQuery.removeEventListener('change', systemThemeHandler);
@@ -90,9 +95,9 @@ export function useTheme() {
 
     /**
      * テーマを更新
-     * @param {string} newTheme - 新しいテーマ（'light', 'dark', 'system'）
+     * @param newTheme - 新しいテーマ（'light', 'dark', 'system'）
      */
-    const updateTheme = async (newTheme) => {
+    const updateTheme = async (newTheme: Theme): Promise<void> => {
         theme.value = newTheme;
         setStoredTheme(newTheme);
 

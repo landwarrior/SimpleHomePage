@@ -19,10 +19,10 @@
     color-scheme: dark;
 
     /* ニューモーフィズム用のCSS変数（ダークモード） */
-    --neu-bg: #252525;
+    --neu-bg: #272727;
     --neu-text-color: #d0d0d0;
-    --neu-shadow-lt: #444444;
-    --neu-shadow-rb: #191919;
+    --neu-shadow-lt: #3e3e3e;
+    --neu-shadow-rb: #101010;
 }
 
 [v-cloak] {

@@ -1,49 +1,54 @@
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue';
+import type { Theme } from '../composables/useTheme';
 
-const props = defineProps({
-  currentTheme: {
-    type: String,
-    required: true
-  }
-});
+const props = defineProps<{
+  currentTheme: Theme;
+}>();
 
-const emit = defineEmits(['update-theme']);
+const emit = defineEmits<{
+  'update-theme': [theme: Theme];
+}>();
 
-const showMenu = ref(false);
+const showMenu = ref<boolean>(false);
 
-const setTheme = (theme) => {
+const setTheme = (theme: Theme): void => {
   emit('update-theme', theme);
   showMenu.value = false;
 };
 
-const toggleMenu = () => {
+const toggleMenu = (): void => {
   showMenu.value = !showMenu.value;
 };
 
-const closeMenu = () => {
+const closeMenu = (): void => {
   showMenu.value = false;
 };
 
+// click-outside ディレクティブの型定義
+interface ClickOutsideElement extends HTMLElement {
+  clickOutsideEvent?: (event: MouseEvent) => void;
+}
+
 // click-outside ディレクティブ
 const vClickOutside = {
-  mounted(el, binding) {
-    el.clickOutsideEvent = function (event) {
+  mounted(el: ClickOutsideElement, binding: { value: () => void }) {
+    el.clickOutsideEvent = function (event: MouseEvent) {
       // クリックされた要素がメニュー内でない場合のみ閉じる
-      if (!(el === event.target || el.contains(event.target))) {
+      if (!(el === event.target || el.contains(event.target as Node))) {
         binding.value();
       }
     };
     // 少し遅延させてイベントリスナーを追加（現在のクリックイベントが処理されるまで待つ）
     setTimeout(() => {
-      document.addEventListener('click', el.clickOutsideEvent);
+      document.addEventListener('click', el.clickOutsideEvent!);
     }, 0);
   },
-  unmounted(el) {
+  unmounted(el: ClickOutsideElement) {
     if (el.clickOutsideEvent) {
       document.removeEventListener('click', el.clickOutsideEvent);
     }
-  }
+  },
 };
 </script>
 

@@ -1,11 +1,11 @@
 import { createApp } from 'vue';
-import { createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router';
 import App from './App.vue';
 import HomePage from './components/HomePage.vue';
 import LinkPage from './components/LinkPage.vue';
 import './style.css';
 
-const routes = [
+const routes: RouteRecordRaw[] = [
     { path: '/', component: HomePage },
     { path: '/linkpage', component: LinkPage },
 ];

@@ -1,29 +1,34 @@
-<script setup>
-import { ref } from 'vue'
-import { RouterLink, useRoute } from 'vue-router'
-import ThemeToggle from './ThemeToggle.vue'
+<script setup lang="ts">
+import { ref } from 'vue';
+import { RouterLink, useRoute } from 'vue-router';
+import type { Theme } from '../composables/useTheme';
+import ThemeToggle from './ThemeToggle.vue';
+
+// メニュー項目の型定義
+interface MenuItem {
+  href: string;
+  title: string;
+  target: string;
+  isRouterLink: boolean;
+}
 
 // 親コンポーネントから受け取るpropsの定義
-const props = defineProps({
+const props = defineProps<{
   // 現在アクティブなタイトル
-  activeTitle: {
-    type: String,
-    default: ''
-  },
+  activeTitle?: string;
   // 現在のテーマ
-  currentTheme: {
-    type: String,
-    default: 'system'
-  }
-})
+  currentTheme?: Theme;
+}>();
 
 // カスタムイベントの発火用
-const emit = defineEmits(['update-theme'])
+const emit = defineEmits<{
+  'update-theme': [theme: Theme];
+}>();
 
-const route = useRoute()
+const route = useRoute();
 
 // メニュー一覧（デスクトップ・モバイル共通）
-const menuList = [
+const menuList: MenuItem[] = [
   {
     href: 'toygun.html',
     title: 'トイガンインプレ',
@@ -45,22 +50,22 @@ const menuList = [
 ];
 
 // モバイルメニューの開閉状態（true: オープン, false: クローズ）
-const isMobileMenuOpen = ref(false)
+const isMobileMenuOpen = ref<boolean>(false);
 
 // モバイルメニューの開閉を切り替える関数
-const toggleMobileMenu = () => {
-  isMobileMenuOpen.value = !isMobileMenuOpen.value
-}
+const toggleMobileMenu = (): void => {
+  isMobileMenuOpen.value = !isMobileMenuOpen.value;
+};
 
 // モバイルメニューを閉じる関数
-const closeMobileMenu = () => {
-  isMobileMenuOpen.value = false
-}
+const closeMobileMenu = (): void => {
+  isMobileMenuOpen.value = false;
+};
 
 // テーマ切り替えイベントを親へエミット
-const handleUpdateTheme = (theme) => {
-  emit('update-theme', theme)
-}
+const handleUpdateTheme = (theme: Theme): void => {
+  emit('update-theme', theme);
+};
 </script>
 
 <template>
@@ -89,12 +94,12 @@ const handleUpdateTheme = (theme) => {
               </a>
             </li>
           </ul>
-          <ThemeToggle :current-theme="currentTheme" @update-theme="handleUpdateTheme" />
+          <ThemeToggle :current-theme="currentTheme ?? 'system'" @update-theme="handleUpdateTheme" />
         </div>
 
         <!-- モバイルメニュー用ボタン -->
         <div class="md:hidden flex items-center gap-2">
-          <ThemeToggle :current-theme="currentTheme" @update-theme="handleUpdateTheme" />
+          <ThemeToggle :current-theme="currentTheme ?? 'system'" @update-theme="handleUpdateTheme" />
           <button @click="toggleMobileMenu" class="p-2 rounded hover:bg-teal-700 transition-colors" aria-label="メニューを開く">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />

@@ -238,9 +238,9 @@
                 }
             }
         },
-        // new-homepageディレクトリ内のファイル用の設定
+        // new-homepageディレクトリ内のファイル用の設定（TypeScript対応）
         {
-            "includes": ["new-homepage/**/*.{js,mjs,cjs,vue}"],
+            "includes": ["new-homepage/**/*.{js,mjs,cjs,ts,tsx,vue}"],
             "javascript": {
                 // Vueとflatpickrをグローバル変数として認識
                 "globals": ["Vue", "flatpickr"]
