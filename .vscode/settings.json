@@ -25,6 +25,11 @@
         "quickfix.biome": "explicit",
         "source.organizeImports.biome": "explicit"
     },
+    "css.lint.unknownAtRules": "ignore",
+    "[css]": {
+        "editor.defaultFormatter": "biomejs.biome",
+        "editor.formatOnSave": true
+    },
     "workbench.colorCustomizations": {
         "activityBar.activeBackground": "#65c89b",
         "activityBar.background": "#65c89b",

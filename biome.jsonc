@@ -211,6 +211,14 @@
         // Vueファイルなどの埋め込みスクリプトの完全サポートを有効化
         "experimentalFullSupportEnabled": true
     },
+    // === CSS設定 ===
+    // CSSファイルのパーサー設定
+    "css": {
+        "parser": {
+            // Tailwind CSS v4の構文（@custom-variant、@applyなど）を許可
+            "tailwindDirectives": true
+        }
+    },
     // === オーバーライド設定 ===
     // 特定のファイルパターンに対して設定を上書き
     "overrides": [
