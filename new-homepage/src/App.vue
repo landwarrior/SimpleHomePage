@@ -14,6 +14,9 @@ const activeTitle = computed<string>(() => {
   if (route.path === '/linkpage') {
     return 'リンク集';
   }
+  if (route.path === '/toygun') {
+    return 'トイガンインプレ';
+  }
   return '';
 });
 

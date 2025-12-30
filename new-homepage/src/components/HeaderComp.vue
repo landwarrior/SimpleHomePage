@@ -30,10 +30,10 @@ const route = useRoute();
 // メニュー一覧（デスクトップ・モバイル共通）
 const menuList: MenuItem[] = [
   {
-    href: 'toygun.html',
+    href: '/toygun',
     title: 'トイガンインプレ',
     target: '',
-    isRouterLink: false,
+    isRouterLink: true,
   },
   {
     href: '/linkpage',

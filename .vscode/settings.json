@@ -50,5 +50,7 @@
         "titleBar.inactiveForeground": "#15202b99"
     },
     "peacock.color": "#42b883",
-    "cSpell.words": ["htmlhint", "landwarrior", "Vite"]
+    "cSpell.words": ["elegun", "gasgun", "htmlhint", "landwarrior", "linkpage", "toygun", "Vite"],
+    // Code Spell Checkerを無効にするファイルパターン
+    "cSpell.ignorePaths": ["**/node_modules/**", "**/dist/**", "**/.git/**", "new-homepage/src/composables/useToygun.ts"]
 }
