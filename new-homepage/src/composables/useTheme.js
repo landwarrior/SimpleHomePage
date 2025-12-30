@@ -1,95 +1,95 @@
-import { ref, onMounted, onUnmounted, nextTick, watch } from 'vue'
+import { nextTick, onMounted, onUnmounted, ref, watch } from 'vue';
 
 export function useTheme() {
-  const theme = ref('system')
-  let systemThemeHandler = null
+    const theme = ref('system');
+    let systemThemeHandler = null;
 
-  const applyTheme = () => {
-    const html = document.documentElement
+    const applyTheme = () => {
+        const html = document.documentElement;
 
-    // まずdarkクラスを削除
-    html.classList.remove('dark')
+        // まずdarkクラスを削除
+        html.classList.remove('dark');
 
-    if (theme.value === 'system') {
-      // システムの設定に従う
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-      if (prefersDark) {
-        html.classList.add('dark')
-      }
-    } else if (theme.value === 'dark') {
-      html.classList.add('dark')
-    }
-    // lightの場合は何もしない（既にdarkクラスを削除済み）
-  }
-
-  const watchSystemTheme = () => {
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
-    systemThemeHandler = (e) => {
-      if (theme.value === 'system') {
-        const html = document.documentElement
-        if (e.matches) {
-          html.classList.add('dark')
-        } else {
-          html.classList.remove('dark')
+        if (theme.value === 'system') {
+            // システムの設定に従う
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (prefersDark) {
+                html.classList.add('dark');
+            }
+        } else if (theme.value === 'dark') {
+            html.classList.add('dark');
         }
-      }
-    }
-    mediaQuery.addEventListener('change', systemThemeHandler)
-  }
+        // lightの場合は何もしない（既にdarkクラスを削除済み）
+    };
 
-  const unwatchSystemTheme = () => {
-    if (systemThemeHandler) {
-      const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
-      mediaQuery.removeEventListener('change', systemThemeHandler)
-      systemThemeHandler = null
-    }
-  }
+    const watchSystemTheme = () => {
+        const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+        systemThemeHandler = (e) => {
+            if (theme.value === 'system') {
+                const html = document.documentElement;
+                if (e.matches) {
+                    html.classList.add('dark');
+                } else {
+                    html.classList.remove('dark');
+                }
+            }
+        };
+        mediaQuery.addEventListener('change', systemThemeHandler);
+    };
 
-  const updateTheme = async (newTheme) => {
-    theme.value = newTheme
-    localStorage.setItem('theme', newTheme)
+    const unwatchSystemTheme = () => {
+        if (systemThemeHandler) {
+            const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+            mediaQuery.removeEventListener('change', systemThemeHandler);
+            systemThemeHandler = null;
+        }
+    };
 
-    // Vueの更新サイクルを待ってからテーマを適用
-    await nextTick()
-    applyTheme()
+    const updateTheme = async (newTheme) => {
+        theme.value = newTheme;
+        localStorage.setItem('theme', newTheme);
 
-    // システムテーマの監視を更新
-    if (newTheme === 'system') {
-      watchSystemTheme()
-    } else {
-      unwatchSystemTheme()
-    }
-  }
+        // Vueの更新サイクルを待ってからテーマを適用
+        await nextTick();
+        applyTheme();
 
-  // 初期化
-  onMounted(() => {
-    // ローカルストレージからテーマを読み込む
-    const savedTheme = localStorage.getItem('theme')
-    if (savedTheme) {
-      theme.value = savedTheme
-    }
+        // システムテーマの監視を更新
+        if (newTheme === 'system') {
+            watchSystemTheme();
+        } else {
+            unwatchSystemTheme();
+        }
+    };
 
-    // 初期テーマを適用
-    applyTheme()
+    // 初期化
+    onMounted(() => {
+        // ローカルストレージからテーマを読み込む
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            theme.value = savedTheme;
+        }
 
-    // システムテーマ変更を監視
-    if (theme.value === 'system') {
-      watchSystemTheme()
-    }
-  })
+        // 初期テーマを適用
+        applyTheme();
 
-  // クリーンアップ
-  onUnmounted(() => {
-    unwatchSystemTheme()
-  })
+        // システムテーマ変更を監視
+        if (theme.value === 'system') {
+            watchSystemTheme();
+        }
+    });
 
-  // テーマが変更されたら自動的に適用
-  watch(theme, () => {
-    applyTheme()
-  })
+    // クリーンアップ
+    onUnmounted(() => {
+        unwatchSystemTheme();
+    });
 
-  return {
-    theme,
-    updateTheme
-  }
+    // テーマが変更されたら自動的に適用
+    watch(theme, () => {
+        applyTheme();
+    });
+
+    return {
+        theme,
+        updateTheme,
+    };
 }

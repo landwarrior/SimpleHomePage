@@ -65,14 +65,10 @@ const handleUpdateTheme = (theme) => {
         <div class="hidden md:flex items-center space-x-4">
           <ul class="flex space-x-6">
             <li v-for="menu in menuList" :key="menu.title">
-              <a
-                :href="menu.href"
-                :target="menu.target"
-                :class="[
-                  'px-3 py-2 rounded hover:bg-teal-700 transition-colors',
-                  activeTitle === menu.title ? 'bg-teal-800 font-semibold' : ''
-                ]"
-              >
+              <a :href="menu.href" :target="menu.target" :class="[
+                'px-3 py-2 rounded hover:bg-teal-700 transition-colors',
+                activeTitle === menu.title ? 'bg-teal-800 font-semibold' : ''
+              ]">
                 {{ menu.title }}
               </a>
             </li>
@@ -83,11 +79,7 @@ const handleUpdateTheme = (theme) => {
         <!-- Mobile Menu Button -->
         <div class="md:hidden flex items-center gap-2">
           <ThemeToggle :current-theme="currentTheme" @update-theme="handleUpdateTheme" />
-          <button
-            @click="toggleMobileMenu"
-            class="p-2 rounded hover:bg-teal-700 transition-colors"
-            aria-label="メニューを開く"
-          >
+          <button @click="toggleMobileMenu" class="p-2 rounded hover:bg-teal-700 transition-colors" aria-label="メニューを開く">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
@@ -96,21 +88,13 @@ const handleUpdateTheme = (theme) => {
       </div>
 
       <!-- Mobile Menu -->
-      <div
-        v-if="isMobileMenuOpen"
-        class="md:hidden pb-4"
-      >
+      <div v-if="isMobileMenuOpen" class="md:hidden pb-4">
         <ul class="space-y-2">
           <li v-for="menu in menuList" :key="menu.title">
-            <a
-              :href="menu.href"
-              :target="menu.target"
-              @click="closeMobileMenu"
-              :class="[
-                'block px-3 py-2 rounded hover:bg-teal-700 transition-colors',
-                activeTitle === menu.title ? 'bg-teal-800 font-semibold' : ''
-              ]"
-            >
+            <a :href="menu.href" :target="menu.target" @click="closeMobileMenu" :class="[
+              'block px-3 py-2 rounded hover:bg-teal-700 transition-colors',
+              activeTitle === menu.title ? 'bg-teal-800 font-semibold' : ''
+            ]">
               {{ menu.title }}
             </a>
           </li>

@@ -21,8 +21,8 @@ npm install
 # Tailwind CSS と関連ツールのインストール（v4を使用）
 npm install -D tailwindcss @tailwindcss/vite
 
-# ESLint と HTMLHint のインストール
-npm install -D eslint globals htmlhint eslint-plugin-vue
+# Biome（Linter/Formatter）のインストール
+npm install -D @biomejs/biome
 ```
 
 ### 2. 各ツールの設定
@@ -54,38 +54,36 @@ export default defineConfig({
 }
 ```
 
-#### ③ ESLint の設定 ( `eslint.config.js` )
+#### ③ Biome の設定 ( `biome.json` )
 
-`SimpleHomePage` プロジェクトのルート直下に `eslint.config.js` ファイルを作成します。Vue.js プロジェクト用の基本的な設定例：
+`new-homepage` ディレクトリ直下に `biome.json` ファイルを作成します。BiomeはESLintとPrettierを統合した高速なLinter/Formatterです。
 
-```js
-import js from '@eslint/js';
-import globals from 'globals';
-import vue from 'eslint-plugin-vue';
+設定ファイルは既に作成されています。必要に応じて `new-homepage/biome.json` を編集して設定を調整できます。
 
-export default [
-  js.configs.recommended,
-  ...vue.configs['flat/recommended'],
-  {
-    files: ['new-homepage/**/*.{js,mjs,cjs,vue}'],
-    languageOptions: {
-      ecmaVersion: 2022,
-      sourceType: 'module',
-      globals: {
-        ...globals.browser,
-        ...globals.node,
-      },
-    },
-    rules: {
-      'no-unused-vars': 'warn',
-      'no-console': 'warn',
-    },
-  },
-  {
-    ignores: ['node_modules/**', 'dist/**', 'new-homepage/node_modules/**', 'new-homepage/dist/**'],
-  },
-];
+**Biomeの特徴:**
+- **高速**: Rustで実装されており、ESLint/Prettierより最大35倍高速
+- **統合**: LinterとFormatterが1つのツールに統合
+- **設定が簡単**: 1つの設定ファイルで管理
+
+**使用方法:**
+```bash
+# リントチェック
+npm run lint
+
+# フォーマット
+npm run format
+
+# リントとフォーマットの両方をチェック
+npm run check
+
+# リントとフォーマットを自動修正
+npm run check:fix
 ```
+
+**VS Codeでの使用:**
+VS Codeの拡張機能マーケットプレイスで「Biome」を検索し、公式拡張機能（`biomejs.biome`）をインストールすると、保存時に自動フォーマットされます。
+
+詳細は `BIOME_MIGRATION.md` を参照してください。
 
 ### 3. Tailwind CSS の読み込み設定
 
