@@ -1,0 +1,201 @@
+@import "tailwindcss";
+
+/* ダークモードをクラスベースに設定（.darkクラスがhtml要素にある場合に適用） */
+@custom-variant dark (.dark &);
+
+:root {
+    font-family: "Nunito", "Noto Sans JP", sans-serif;
+    letter-spacing: 0.06rem;
+
+    /* ニューモーフィズム用のCSS変数（ライトモード） */
+    --neu-bg: #e0e0e0;
+    --neu-text-color: #4e5253;
+    --neu-shadow-lt: #f3f3f3;
+    --neu-shadow-rb: #bebebe;
+}
+
+/* ダークモード対応 */
+.dark {
+    color-scheme: dark;
+
+    /* ニューモーフィズム用のCSS変数（ダークモード） */
+    --neu-bg: #272727;
+    --neu-text-color: #d0d0d0;
+    --neu-shadow-lt: #3e3e3e;
+    --neu-shadow-rb: #101010;
+}
+
+[v-cloak] {
+    display: none;
+}
+
+.img-width {
+    width: 100%;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background-color: var(--neu-bg);
+    color: var(--neu-text-color);
+}
+
+/* ニューモーフィズム（Neumorphism）スタイル */
+
+/* ============================================
+   見た目用ニューモーフィズム（カードなど）
+   ホバー・アクティブ効果なし
+   ============================================ */
+
+/* 浮き上がった効果（Raised） */
+.neu-raised {
+    background: var(--neu-bg);
+    box-shadow:
+        8px 8px 16px var(--neu-shadow-rb),
+        -8px -8px 16px var(--neu-shadow-lt);
+}
+
+.neu-raised-sm {
+    background: var(--neu-bg);
+    box-shadow:
+        4px 4px 8px var(--neu-shadow-rb),
+        -4px -4px 8px var(--neu-shadow-lt);
+}
+
+.neu-raised-lg {
+    background: var(--neu-bg);
+    box-shadow:
+        12px 12px 24px var(--neu-shadow-rb),
+        -12px -12px 24px var(--neu-shadow-lt);
+}
+
+/* 埋め込まれた効果（Pressed/Inset） */
+.neu-pressed {
+    background: var(--neu-bg);
+    box-shadow:
+        inset 8px 8px 16px var(--neu-shadow-rb),
+        inset -8px -8px 16px var(--neu-shadow-lt);
+}
+
+.neu-pressed-sm {
+    background: var(--neu-bg);
+    box-shadow:
+        inset 4px 4px 8px var(--neu-shadow-rb),
+        inset -4px -4px 8px var(--neu-shadow-lt);
+}
+
+.neu-pressed-lg {
+    background: var(--neu-bg);
+    box-shadow:
+        inset 12px 12px 24px var(--neu-shadow-rb),
+        inset -12px -12px 24px var(--neu-shadow-lt);
+}
+
+/* 背景色のバリエーション */
+.neu-bg-light {
+    background: var(--neu-bg);
+    filter: brightness(1.1);
+}
+
+.neu-bg-gray {
+    background: var(--neu-bg);
+}
+
+.neu-bg-dark {
+    background: var(--neu-bg);
+    filter: brightness(0.9);
+}
+
+/* 角丸付き */
+.neu-rounded {
+    border-radius: 1rem;
+}
+
+.neu-rounded-lg {
+    border-radius: 1.5rem;
+}
+
+.neu-rounded-xl {
+    border-radius: 2rem;
+}
+
+/* ============================================
+   ボタン用ニューモーフィズム
+   ホバー・アクティブ効果あり
+   ============================================ */
+
+/* 浮き上がった効果（Raised） */
+.neu-btn-raised {
+    background: var(--neu-bg);
+    box-shadow:
+        8px 8px 16px var(--neu-shadow-rb),
+        -8px -8px 16px var(--neu-shadow-lt);
+    transition: box-shadow 0.2s ease;
+}
+
+.neu-btn-raised-sm {
+    background: var(--neu-bg);
+    box-shadow:
+        4px 4px 8px var(--neu-shadow-rb),
+        -4px -4px 8px var(--neu-shadow-lt);
+    transition: box-shadow 0.2s ease;
+}
+
+.neu-btn-raised-lg {
+    background: var(--neu-bg);
+    box-shadow:
+        12px 12px 24px var(--neu-shadow-rb),
+        -12px -12px 24px var(--neu-shadow-lt);
+    transition: box-shadow 0.2s ease;
+}
+
+/* 埋め込まれた効果（Pressed/Inset） */
+.neu-btn-pressed {
+    background: var(--neu-bg);
+    box-shadow:
+        inset 8px 8px 16px var(--neu-shadow-rb),
+        inset -8px -8px 16px var(--neu-shadow-lt);
+    transition: box-shadow 0.2s ease;
+}
+
+.neu-btn-pressed-sm {
+    background: var(--neu-bg);
+    box-shadow:
+        inset 4px 4px 8px var(--neu-shadow-rb),
+        inset -4px -4px 8px var(--neu-shadow-lt);
+    transition: box-shadow 0.2s ease;
+}
+
+.neu-btn-pressed-lg {
+    background: var(--neu-bg);
+    box-shadow:
+        inset 12px 12px 24px var(--neu-shadow-rb),
+        inset -12px -12px 24px var(--neu-shadow-lt);
+    transition: box-shadow 0.2s ease;
+}
+
+/* ボタン用ホバー時の効果 */
+.neu-btn-raised:hover {
+    box-shadow:
+        6px 6px 12px var(--neu-shadow-rb),
+        -6px -6px 12px var(--neu-shadow-lt);
+}
+
+.neu-btn-pressed:hover {
+    box-shadow:
+        inset 6px 6px 12px var(--neu-shadow-rb),
+        inset -6px -6px 12px var(--neu-shadow-lt);
+}
+
+/* ボタン用アクティブ時の効果（押し込まれた感じ） */
+.neu-btn-raised:active {
+    box-shadow:
+        inset 4px 4px 8px var(--neu-shadow-rb),
+        inset -4px -4px 8px var(--neu-shadow-lt);
+}
+
+.neu-btn-pressed:active {
+    box-shadow:
+        inset 10px 10px 20px var(--neu-shadow-rb),
+        inset -10px -10px 20px var(--neu-shadow-lt);
+}
