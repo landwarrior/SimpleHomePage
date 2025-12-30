@@ -6,17 +6,12 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview",
-    "lint": "biome lint .",
-    "format": "biome format --write .",
-    "check": "biome check .",
-    "check:fix": "biome check --write ."
+    "preview": "vite preview"
   },
   "dependencies": {
     "vue": "^3.5.24"
   },
   "devDependencies": {
-    "@biomejs/biome": "^1.9.4",
     "@tailwindcss/vite": "^4.1.18",
     "@vitejs/plugin-vue": "^6.0.1",
     "tailwindcss": "^4.1.18",

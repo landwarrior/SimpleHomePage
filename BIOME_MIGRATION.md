@@ -9,11 +9,24 @@ Biomeは、ESLintとPrettierを統合した高速なLinter/Formatterです。
 
 ## インストール手順
 
-### 1. Biomeのインストール
+### 1. Biomeのインストールと設定の移行
 
 ```bash
-cd new-homepage
 npm install --save-dev --save-exact @biomejs/biome
+```
+
+eslint.config.js は package.json の type が commonjs になっていると import / export の構文エラーになるので、 eslint.config.mjs にリネームします。  
+移行コマンドは以下の通りです。
+
+```bash
+# インスパイアされたルールも移行する
+npx @biomejs/biome migrate eslint --write --include-inspired
+```
+
+Prettier の移行は以下のコマンドです。
+
+```bash
+npx @biomejs/biome migrate prettier --write
 ```
 
 ### 2. VS Code拡張機能のインストール
@@ -24,7 +37,7 @@ VS Codeの拡張機能マーケットプレイスで「Biome」を検索し、�
 
 ### 3. 設定ファイルの確認
 
-`new-homepage/biome.json` が既に作成されています。必要に応じて設定を調整してください。
+`biome.json` が既に作成されています。必要に応じて設定を調整してください。
 
 ## 使用方法
 
@@ -83,7 +96,6 @@ Vueファイルについては、Volar拡張機能と併用することを推奨
 - `formatter`: フォーマット設定（インデント、行幅など）
 - `linter`: リントルールの設定
 - `javascript`: JavaScript固有の設定
-- `vue`: Vue.js固有の設定
 
 詳細は [Biome公式ドキュメント](https://biomejs.dev/ja/) を参照してください。
 

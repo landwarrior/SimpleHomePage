@@ -20,10 +20,9 @@ npm install
 
 # Tailwind CSS と関連ツールのインストール（v4を使用）
 npm install -D tailwindcss @tailwindcss/vite
-
-# Biome（Linter/Formatter）のインストール
-npm install -D @biomejs/biome
 ```
+
+すでに new-homepage 内の package.json に書かれているので、クローンして構築する場合は new-homepage で `npm install` するだけで大丈夫です。
 
 ### 2. 各ツールの設定
 
@@ -56,9 +55,9 @@ export default defineConfig({
 
 #### ③ Biome の設定 ( `biome.json` )
 
-`new-homepage` ディレクトリ直下に `biome.json` ファイルを作成します。BiomeはESLintとPrettierを統合した高速なLinter/Formatterです。
+`SimpleHomePage` プロジェクトのルート直下に `biome.json` ファイルを作成します。BiomeはESLintとPrettierを統合した高速なLinter/Formatterです。
 
-設定ファイルは既に作成されています。必要に応じて `new-homepage/biome.json` を編集して設定を調整できます。
+設定ファイルは既に作成されています。必要に応じて設定を調整できます。
 
 **Biomeの特徴:**
 - **高速**: Rustで実装されており、ESLint/Prettierより最大35倍高速

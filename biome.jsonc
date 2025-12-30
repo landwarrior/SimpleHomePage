@@ -1,0 +1,317 @@
+{
+    // Biome設定ファイルのスキーマ定義
+    "$schema": "https://biomejs.dev/schemas/2.3.10/schema.json",
+    // === バージョン管理システム設定 ===
+    // Gitを使用し、.gitignoreファイルを尊重する
+    "vcs": {
+        "enabled": true,
+        "clientKind": "git",
+        "useIgnoreFile": true
+    },
+    // === ファイル設定 ===
+    // 未知のファイルタイプを無視しない（すべてのファイルを処理対象とする）
+    "files": {
+        "ignoreUnknown": false
+    },
+    // === フォーマッター設定 ===
+    // コードの自動フォーマットに関する設定
+    "formatter": {
+        // フォーマッターを有効化
+        "enabled": true,
+        // エラーがあってもフォーマットを実行しない
+        "formatWithErrors": false,
+        // インデントスタイル: スペースを使用
+        "indentStyle": "space",
+        // インデント幅: 4スペース
+        "indentWidth": 4,
+        // 改行コード: LF（Unix形式）
+        "lineEnding": "lf",
+        // 1行の最大文字数: 200文字
+        "lineWidth": 200,
+        // HTML属性の位置: 自動決定
+        "attributePosition": "auto",
+        // 開始ブラケットを同じ行に配置しない
+        "bracketSameLine": false,
+        // オブジェクトリテラルの波括弧内にスペースを入れる
+        "bracketSpacing": true,
+        // 配列やオブジェクトの展開: 自動決定
+        "expand": "auto",
+        // EditorConfigの設定を使用する
+        "useEditorconfig": true
+    },
+    // === リンター設定 ===
+    // コードの静的解析とエラーチェックに関する設定
+    "linter": {
+        // リンターを有効化
+        "enabled": true,
+        "rules": {
+            // 推奨ルールセットを使用しない（カスタムルールを定義）
+            "recommended": false,
+            // === 複雑度に関するルール ===
+            // 正規表現内の隣接するスペースを禁止
+            // 不要なBooleanキャストを禁止
+            // 不要なcatchブロックを禁止
+            // 正規表現内の不要なエスケープを禁止
+            // 不要なフラグメントを禁止
+            "complexity": {
+                "noAdjacentSpacesInRegex": "error",
+                "noExtraBooleanCast": "error",
+                "noUselessCatch": "error",
+                "noUselessEscapeInRegex": "error",
+                "noUselessFragments": "warn"
+            },
+            // === 正確性に関するルール ===
+            // const変数への再代入を禁止
+            // 定数条件を禁止
+            // 空の文字クラスを正規表現で禁止
+            // 空のパターンを禁止
+            // グローバルオブジェクトの関数呼び出しを禁止
+            // 無効な組み込みインスタンス化を禁止
+            // 無効なコンストラクタのsuper呼び出しを禁止
+            // 非8進数の10進数エスケープを禁止
+            // 精度の損失を禁止
+            // 自己代入を禁止
+            // setterでのreturnを禁止
+            // switch文内の宣言を禁止
+            // 未宣言変数の使用を禁止（no-undef相当）
+            // 到達不能コードを禁止
+            // 到達不能なsuper呼び出しを禁止
+            // 安全でないfinallyブロックを禁止
+            // 安全でないオプショナルチェーンを禁止
+            // 未使用のラベルを禁止
+            // 未使用のプライベートクラスメンバーを禁止
+            // 未使用変数をエラーとして検出（no-unused-vars相当）
+            // isNaN()の代わりにNumber.isNaN()を使用
+            // 有効なforループの方向を使用
+            // 有効なtypeofチェックを使用
+            // ジェネレーター関数でyieldを使用
+            "correctness": {
+                "noConstAssign": "error",
+                "noConstantCondition": "error",
+                "noEmptyCharacterClassInRegex": "error",
+                "noEmptyPattern": "error",
+                "noGlobalObjectCalls": "error",
+                "noInvalidBuiltinInstantiation": "error",
+                "noInvalidConstructorSuper": "error",
+                "noNonoctalDecimalEscape": "error",
+                "noPrecisionLoss": "error",
+                "noSelfAssign": "error",
+                "noSetterReturn": "error",
+                "noSwitchDeclarations": "error",
+                "noUndeclaredVariables": "error",
+                "noUnreachable": "error",
+                "noUnreachableSuper": "error",
+                "noUnsafeFinally": "error",
+                "noUnsafeOptionalChaining": "error",
+                "noUnusedLabels": "error",
+                "noUnusedPrivateClassMembers": "error",
+                "noUnusedVariables": "error",
+                "useIsNan": "error",
+                "useValidForDirection": "error",
+                "useValidTypeof": "error",
+                "useYield": "error"
+            },
+            // === 疑わしいコードパターンに関するルール ===
+            // 式内での代入を禁止
+            // 非同期Promiseエグゼキューターを禁止
+            // catch句での代入を禁止
+            // クラスへの代入を禁止
+            // -0との比較を禁止
+            // 定数バイナリ式を禁止
+            // 正規表現内の制御文字を禁止
+            // debugger文を禁止
+            // 重複するcaseを禁止
+            // 重複するクラスメンバーを禁止
+            // 重複するelse-ifを禁止
+            // 重複するオブジェクトキーを禁止
+            // 重複するパラメータを禁止
+            // 空のブロック文を禁止
+            // switch文でのフォールスルーを禁止
+            // 関数への代入を禁止
+            // グローバル変数への再代入を禁止（no-global-assign相当）
+            // importへの代入を禁止
+            // 不正な空白文字を禁止
+            // 誤解を招く文字クラスを禁止
+            // プロトタイプの組み込みメソッドを禁止
+            // 再宣言を禁止
+            // 制限された名前のシャドウイングを禁止
+            // スパース配列を禁止
+            // 安全でない否定を禁止
+            // 不要な正規表現の後方参照を禁止
+            // with文を禁止
+            // getterでのreturnを必須化
+            "suspicious": {
+                "noAssignInExpressions": "error",
+                "noAsyncPromiseExecutor": "error",
+                "noCatchAssign": "error",
+                "noClassAssign": "error",
+                "noCompareNegZero": "error",
+                "noConstantBinaryExpressions": "error",
+                "noControlCharactersInRegex": "error",
+                "noDebugger": "error",
+                "noDuplicateCase": "error",
+                "noDuplicateClassMembers": "error",
+                "noDuplicateElseIf": "error",
+                "noDuplicateObjectKeys": "error",
+                "noDuplicateParameters": "error",
+                "noEmptyBlockStatements": "error",
+                "noFallthroughSwitchClause": "error",
+                "noFunctionAssign": "error",
+                "noGlobalAssign": "error",
+                "noImportAssign": "error",
+                "noIrregularWhitespace": "error",
+                "noMisleadingCharacterClass": "error",
+                "noPrototypeBuiltins": "error",
+                "noRedeclare": "error",
+                "noShadowRestrictedNames": "error",
+                "noSparseArray": "error",
+                "noUnsafeNegation": "error",
+                "noUselessRegexBackrefs": "error",
+                "noWith": "error",
+                "useGetterReturn": "error"
+            }
+        },
+        // リンターの対象ファイル: すべてのファイル（node_modulesとdistを除く）
+        "includes": [
+            "**",
+            "!node_modules/**",
+            "!dist/**",
+            "!new-homepage/node_modules/**",
+            "!new-homepage/dist/**"
+        ]
+    },
+    // === JavaScript設定 ===
+    "javascript": {
+        "formatter": {
+            // JSXのクォートスタイル: ダブルクォート
+            "jsxQuoteStyle": "double",
+            // オブジェクトプロパティのクォート: 必要な場合のみ
+            "quoteProperties": "asNeeded",
+            // 末尾のカンマ: ES5形式（オブジェクトと配列のみ）
+            "trailingCommas": "es5",
+            // セミコロン: 常に使用（semi: error相当）
+            "semicolons": "always",
+            // アロー関数の括弧: 常に使用（arrow-parens: error相当）
+            "arrowParentheses": "always",
+            // 開始ブラケットを同じ行に配置しない
+            "bracketSameLine": false,
+            // クォートスタイル: シングルクォート
+            "quoteStyle": "single",
+            // HTML属性の位置: 自動決定
+            "attributePosition": "auto",
+            // オブジェクトリテラルの波括弧内にスペースを入れる
+            "bracketSpacing": true
+        },
+        // グローバル変数: デフォルトでは空（overridesで設定）
+        "globals": []
+    },
+    // === HTML設定 ===
+    // HTMLファイルのフォーマット設定
+    "html": {
+        "formatter": {
+            // scriptとstyleタグ内をインデントしない
+            "indentScriptAndStyle": false,
+            // void要素を常に自己閉じタグにする
+            "selfCloseVoidElements": "always"
+        },
+        // Vueファイルなどの埋め込みスクリプトの完全サポートを有効化
+        "experimentalFullSupportEnabled": true
+    },
+    // === オーバーライド設定 ===
+    // 特定のファイルパターンに対して設定を上書き
+    "overrides": [
+        // Vueファイル用の設定
+        {
+            "includes": [
+                "*.vue",
+                "**/*.vue"
+            ],
+            "javascript": {
+                "globals": []
+            },
+            "linter": {
+                "rules": {
+                    // Vueの<script setup>では、テンプレート内で使用される変数が
+                    // Biomeによって認識されないため、未使用変数のチェックを無効化
+                    "correctness": {
+                        "noUnusedVariables": "off"
+                    }
+                }
+            }
+        },
+        // new-homepageディレクトリ内のファイル用の設定
+        {
+            "includes": [
+                "new-homepage/**/*.{js,mjs,cjs,vue}"
+            ],
+            "javascript": {
+                // Vueとflatpickrをグローバル変数として認識
+                "globals": [
+                    "Vue",
+                    "flatpickr"
+                ]
+            },
+            "linter": {
+                "rules": {
+                    // === 複雑度ルール ===
+                    // argumentsオブジェクトの使用を禁止（prefer-rest-params相当）
+                    // 不要なコンストラクタを禁止（no-useless-constructor相当）
+                    // 不要な名前変更を禁止（no-useless-rename相当）
+                    // リテラルキーの使用を推奨
+                    "complexity": {
+                        "noArguments": "error",
+                        "noUselessConstructor": "error",
+                        "noUselessRename": "error",
+                        "useLiteralKeys": "error"
+                    },
+                    // === 正確性ルール ===
+                    // 未宣言変数の使用を禁止
+                    // 未使用変数をエラーとして検出
+                    "correctness": {
+                        "noUndeclaredVariables": "error",
+                        "noUnusedVariables": "error"
+                    },
+                    // === スタイルルール ===
+                    // 再代入されない変数はconstを使用（prefer-const相当）
+                    "style": {
+                        "useConst": "error"
+                    },
+                    // === 疑わしいコードパターンルール ===
+                    // consoleの使用を警告（no-console: warn相当）
+                    // グローバル変数への再代入を禁止
+                    "suspicious": {
+                        "noConsole": "warn",
+                        "noGlobalAssign": "error"
+                    }
+                }
+            }
+        },
+        // new-homepageディレクトリ内のVueファイル専用の設定
+        {
+            "includes": [
+                "new-homepage/**/*.vue"
+            ],
+            "linter": {
+                "rules": {
+                    // Vueの<script setup>では、テンプレート内で使用される変数が
+                    // Biomeによって認識されないため、未使用変数のチェックを無効化
+                    "correctness": {
+                        "noUnusedVariables": "off"
+                    }
+                }
+            }
+        }
+    ],
+    // === アシスト機能設定 ===
+    // エディタの自動補完やインポート整理などの機能
+    "assist": {
+        // アシスト機能を有効化
+        "enabled": true,
+        "actions": {
+            "source": {
+                // インポート文を自動整理
+                "organizeImports": "on"
+            }
+        }
+    }
+}
