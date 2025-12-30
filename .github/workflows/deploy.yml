@@ -19,6 +19,7 @@ jobs:
           node-version: '20'
 
       - name: Install and Build
+        working-directory: ./new-homepage
         run: |
           npm install
           npm run build
@@ -29,5 +30,5 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./dist/  # Vite のビルド出力先
+          local-dir: ./new-homepage/dist/  # Vite のビルド出力先
           server-dir: /  # サーバー上のパス
