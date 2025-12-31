@@ -59,12 +59,12 @@ onMounted(() => {
 
             <!-- ニューモーフィズムスタイルのボタンナビゲーション -->
             <div class="mb-6">
-                <nav class="flex flex-wrap gap-3">
+                <nav class="flex flex-wrap gap-6">
                     <button v-for="gun in category.list" :key="gun.id" @click="setActiveTab(category.title, gun.id)" :class="[
                         'px-5 py-2.5 text-sm font-medium neu-rounded transition-all',
                         activeTabs[category.title] === gun.id
-                            ? 'neu-btn-pressed text-gray-800 dark:text-gray-100'
-                            : 'neu-btn-raised text-gray-700 dark:text-gray-300 hover:neu-btn-pressed',
+                            ? 'neu-btn-pressed neu-btn-pressed-sm text-gray-800 dark:text-gray-100'
+                            : 'neu-btn-raised neu-btn-raised-sm text-gray-700 dark:text-gray-300 hover:neu-btn-pressed',
                     ]">
                         {{ gun.name }}
                     </button>
