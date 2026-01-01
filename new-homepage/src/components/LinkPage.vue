@@ -11,7 +11,6 @@ const {
     kanagawaList,
     saitamaList,
     gifuList,
-    ibarakiList,
     oosakaList,
 } = useLinks();
 
@@ -31,7 +30,6 @@ const linkCategories: LinkCategory[] = [
     { title: '神奈川のフィールド', list: kanagawaList },
     { title: '埼玉のフィールド', list: saitamaList },
     { title: '岐阜のフィールド', list: gifuList },
-    { title: '茨城のフィールド', list: ibarakiList },
     { title: '大阪のフィールド', list: oosakaList },
 ];
 </script>
