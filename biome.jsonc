@@ -205,8 +205,8 @@
         "formatter": {
             // scriptとstyleタグ内をインデントしない
             "indentScriptAndStyle": false,
-            // void要素を常に自己閉じタグにする
-            "selfCloseVoidElements": "always"
+            // void要素を自己閉じタグにしない（<br>のまま）
+            "selfCloseVoidElements": "never"
         },
         // Vueファイルなどの埋め込みスクリプトの完全サポートを有効化
         "experimentalFullSupportEnabled": true

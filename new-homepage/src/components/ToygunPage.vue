@@ -48,24 +48,25 @@ onMounted(() => {
 
 <template>
     <div class="container mx-auto px-4 py-8">
-        <h1 class="text-3xl md:text-4xl font-bold text-center mb-8 text-gray-800 dark:text-gray-100">
-            トイガンインプレ
-        </h1>
+        <h1 class="text-3xl md:text-4xl font-bold text-center mb-8 text-gray-800 dark:text-gray-100">トイガンインプレ</h1>
 
         <div v-for="category in gunCategories" :key="category.title" class="mb-12">
-            <h4 class="text-xl md:text-2xl font-semibold mb-6 text-gray-800 dark:text-gray-200">
-                {{ category.title }}
-            </h4>
+            <h4 class="text-xl md:text-2xl font-semibold mb-6 text-gray-800 dark:text-gray-200">{{ category.title }}</h4>
 
             <!-- ニューモーフィズムスタイルのボタンナビゲーション -->
             <div class="mb-6">
                 <nav class="flex flex-wrap gap-6">
-                    <button v-for="gun in category.list" :key="gun.id" @click="setActiveTab(category.title, gun.id)" :class="[
-                        'px-5 py-2.5 text-sm font-medium neu-rounded transition-all',
-                        activeTabs[category.title] === gun.id
+                    <button
+                        v-for="gun in category.list"
+                        :key="gun.id"
+                        @click="setActiveTab(category.title, gun.id)"
+                        :class="[
+                            'px-5 py-2.5 text-sm font-medium neu-rounded transition-all',
+                            activeTabs[category.title] === gun.id
                             ? 'neu-btn-pressed neu-btn-pressed-sm text-gray-800 dark:text-gray-100'
                             : 'neu-btn-raised neu-btn-raised-sm text-gray-700 dark:text-gray-300 hover:neu-btn-pressed',
-                    ]">
+                        ]"
+                    >
                         {{ gun.name }}
                     </button>
                 </nav>
@@ -79,7 +80,14 @@ onMounted(() => {
 
                     <!-- 画像ギャラリー -->
                     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-6">
-                        <img v-for="(img, index) in gun.imgs" :key="index" :src="img" :alt="`${gun.name} - 画像${index + 1}`" class="w-full h-auto rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer object-cover" @click="openImageInNewWindow(img)" />
+                        <img
+                            v-for="(img, index) in gun.imgs"
+                            :key="index"
+                            :src="img"
+                            :alt="`${gun.name} - 画像${index + 1}`"
+                            class="w-full h-auto rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer object-cover"
+                            @click="openImageInNewWindow(img)"
+                        >
                     </div>
 
                     <!-- パーツテーブル -->
@@ -87,22 +95,14 @@ onMounted(() => {
                         <table class="min-w-full divide-y divide-gray-200 dark:divide-[#3e3e3e]">
                             <thead class="bg-[#e0e0e0] dark:bg-[#272727]">
                                 <tr>
-                                    <th class="px-6 py-3 text-left text-md font-medium text-gray-500 dark:text-[#d0d0d0] uppercase tracking-wider">
-                                        メーカー
-                                    </th>
-                                    <th class="px-6 py-3 text-left text-md font-medium text-gray-500 dark:text-[#d0d0d0] uppercase tracking-wider">
-                                        パーツ名称
-                                    </th>
+                                    <th class="px-6 py-3 text-left text-md font-medium text-gray-500 dark:text-[#d0d0d0] uppercase tracking-wider">メーカー</th>
+                                    <th class="px-6 py-3 text-left text-md font-medium text-gray-500 dark:text-[#d0d0d0] uppercase tracking-wider">パーツ名称</th>
                                 </tr>
                             </thead>
                             <tbody class="bg-[#e0e0e0] dark:bg-[#272727] divide-y divide-gray-200 dark:divide-[#3e3e3e]">
                                 <tr v-for="(part, index) in gun.tableValue" :key="index" class="hover:bg-[#d5d5d5] dark:hover:bg-[#2e2e2e] transition-colors">
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-[#d0d0d0]">
-                                        {{ part.maker }}
-                                    </td>
-                                    <td class="px-6 py-4 text-sm text-gray-900 dark:text-[#d0d0d0]">
-                                        {{ part.name }}
-                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-[#d0d0d0]">{{ part.maker }}</td>
+                                    <td class="px-6 py-4 text-sm text-gray-900 dark:text-[#d0d0d0]">{{ part.name }}</td>
                                 </tr>
                             </tbody>
                         </table>
