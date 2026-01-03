@@ -76,15 +76,15 @@ const handleUpdateTheme = (theme: Theme): void => {
 
                 <!-- デスクトップメニュー -->
                 <div class="hidden md:flex items-center space-x-4">
-                    <ul class="flex">
+                    <ul class="flex gap-2">
                         <li v-for="menu in menuList" :key="menu.title">
                             <RouterLink
                                 v-if="menu.isRouterLink"
                                 :to="menu.href"
                                 :class="[
-                'px-3 py-2 rounded hover:bg-teal-700 transition-colors',
-                activeTitle === menu.title ? 'bg-teal-800 font-semibold' : ''
-              ]"
+                                    'px-3 py-2 rounded hover:bg-teal-700 transition-colors',
+                                    activeTitle === menu.title ? 'bg-teal-800 font-semibold' : ''
+                                ]"
                             >
                                 {{ menu.title }}
                             </RouterLink>
@@ -93,9 +93,9 @@ const handleUpdateTheme = (theme: Theme): void => {
                                 :href="menu.href"
                                 :target="menu.target"
                                 :class="[
-                'px-3 py-2 rounded hover:bg-teal-700 transition-colors',
-                activeTitle === menu.title ? 'bg-teal-800 font-semibold' : ''
-              ]"
+                                    'px-3 py-2 rounded hover:bg-teal-700 transition-colors',
+                                    activeTitle === menu.title ? 'bg-teal-800 font-semibold' : ''
+                                ]"
                             >
                                 {{ menu.title }}
                             </a>
@@ -124,9 +124,9 @@ const handleUpdateTheme = (theme: Theme): void => {
                             :to="menu.href"
                             @click="closeMobileMenu"
                             :class="[
-              'block px-3 py-2 rounded hover:bg-teal-700 transition-colors',
-              activeTitle === menu.title ? 'bg-teal-800 font-semibold' : ''
-            ]"
+                                'block px-3 py-2 rounded hover:bg-teal-700 transition-colors',
+                                activeTitle === menu.title ? 'bg-teal-800 font-semibold' : ''
+                            ]"
                         >
                             {{ menu.title }}
                         </RouterLink>
@@ -136,9 +136,9 @@ const handleUpdateTheme = (theme: Theme): void => {
                             :target="menu.target"
                             @click="closeMobileMenu"
                             :class="[
-              'block px-3 py-2 rounded hover:bg-teal-700 transition-colors',
-              activeTitle === menu.title ? 'bg-teal-800 font-semibold' : ''
-            ]"
+                                'block px-3 py-2 rounded hover:bg-teal-700 transition-colors',
+                                activeTitle === menu.title ? 'bg-teal-800 font-semibold' : ''
+                            ]"
                         >
                             {{ menu.title }}
                         </a>
