@@ -2,173 +2,101 @@
     // Biome設定ファイルのスキーマ定義
     "$schema": "https://biomejs.dev/schemas/2.3.10/schema.json",
     // === バージョン管理システム設定 ===
-    // Gitを使用し、.gitignoreファイルを尊重する
     "vcs": {
-        "enabled": true,
-        "clientKind": "git",
-        "useIgnoreFile": true
+        "enabled": true, // VCS統合を有効化（Gitの設定を自動検出）
+        "clientKind": "git", // 使用するVCSクライアントの種類
+        "useIgnoreFile": true // .gitignoreファイルを利用してファイルを無視
     },
     // === ファイル設定 ===
-    // 未知のファイルタイプを無視しない（すべてのファイルを処理対象とする）
     "files": {
-        "ignoreUnknown": false
+        "ignoreUnknown": false // 未知のファイルタイプを無視しない（すべてのファイルを処理対象とする）
     },
     // === フォーマッター設定 ===
     // コードの自動フォーマットに関する設定
     "formatter": {
-        // フォーマッターを有効化
-        "enabled": true,
-        // エラーがあってもフォーマットを実行しない
-        "formatWithErrors": false,
-        // インデントスタイル: スペースを使用
-        "indentStyle": "space",
-        // インデント幅: 4スペース
-        "indentWidth": 4,
-        // 改行コード: LF（Unix形式）
-        "lineEnding": "lf",
-        // 1行の最大文字数: 200文字
-        "lineWidth": 200,
-        // HTML属性の位置: 自動決定
-        "attributePosition": "auto",
-        // 開始ブラケットを同じ行に配置しない
-        "bracketSameLine": false,
-        // オブジェクトリテラルの波括弧内にスペースを入れる
-        "bracketSpacing": true,
-        // 配列やオブジェクトの展開: 自動決定
-        "expand": "auto",
-        // EditorConfigの設定を使用する
-        "useEditorconfig": true
+        "enabled": true, // フォーマッターを有効化
+        "formatWithErrors": false, // エラーがあってもフォーマットを実行しない
+        "indentStyle": "space", // インデントスタイル: スペースを使用
+        "indentWidth": 4, // インデント幅: 4スペース
+        "lineEnding": "lf", // 改行コード: LF（Unix形式）
+        "lineWidth": 200, // 1行の最大文字数: 200文字
+        "attributePosition": "auto", // HTML/JSX属性の位置: "auto"（自動）、"multiline"（複数行）
+        "bracketSameLine": false, // 開始ブラケットを同じ行に配置しない
+        "bracketSpacing": true, // オブジェクトリテラルの波括弧内にスペースを入れる
+        "expand": "auto", // 配列やオブジェクトの展開: "auto"（自動）、"always"（常に）、"never"（しない）
+        "useEditorconfig": true // .editorconfigファイルの設定を読み込む
     },
     // === リンター設定 ===
     // コードの静的解析とエラーチェックに関する設定
     "linter": {
-        // リンターを有効化
-        "enabled": true,
+        "enabled": true, // リンターを有効化
         "rules": {
-            // 推奨ルールセットを使用しない（カスタムルールを定義）
-            "recommended": false,
+            "recommended": false, // 推奨ルールセットを無効化（個別に設定するため）
             // === 複雑度に関するルール ===
-            // 正規表現内の隣接するスペースを禁止
-            // 不要なBooleanキャストを禁止
-            // 不要なcatchブロックを禁止
-            // 正規表現内の不要なエスケープを禁止
-            // 不要なフラグメントを禁止
             "complexity": {
-                "noAdjacentSpacesInRegex": "error",
-                "noExtraBooleanCast": "error",
-                "noUselessCatch": "error",
-                "noUselessEscapeInRegex": "error",
-                "noUselessFragments": "warn"
+                "noAdjacentSpacesInRegex": "error", // 正規表現内の隣接するスペースを禁止
+                "noExtraBooleanCast": "error", // 不要なBooleanキャストを禁止
+                "noUselessCatch": "error", // 不要なcatchブロックを禁止
+                "noUselessEscapeInRegex": "error", // 正規表現内の不要なエスケープを禁止
+                "noUselessFragments": "warn" // 不要なフラグメントを禁止
             },
             // === 正確性に関するルール ===
-            // const変数への再代入を禁止
-            // 定数条件を禁止
-            // 空の文字クラスを正規表現で禁止
-            // 空のパターンを禁止
-            // グローバルオブジェクトの関数呼び出しを禁止
-            // 無効な組み込みインスタンス化を禁止
-            // 無効なコンストラクタのsuper呼び出しを禁止
-            // 非8進数の10進数エスケープを禁止
-            // 精度の損失を禁止
-            // 自己代入を禁止
-            // setterでのreturnを禁止
-            // switch文内の宣言を禁止
-            // 未宣言変数の使用を禁止（no-undef相当）
-            // 到達不能コードを禁止
-            // 到達不能なsuper呼び出しを禁止
-            // 安全でないfinallyブロックを禁止
-            // 安全でないオプショナルチェーンを禁止
-            // 未使用のラベルを禁止
-            // 未使用のプライベートクラスメンバーを禁止
-            // 未使用変数をエラーとして検出（no-unused-vars相当）
-            // isNaN()の代わりにNumber.isNaN()を使用
-            // 有効なforループの方向を使用
-            // 有効なtypeofチェックを使用
-            // ジェネレーター関数でyieldを使用
             "correctness": {
-                "noConstAssign": "error",
-                "noConstantCondition": "error",
-                "noEmptyCharacterClassInRegex": "error",
-                "noEmptyPattern": "error",
-                "noGlobalObjectCalls": "error",
-                "noInvalidBuiltinInstantiation": "error",
-                "noInvalidConstructorSuper": "error",
-                "noNonoctalDecimalEscape": "error",
-                "noPrecisionLoss": "error",
-                "noSelfAssign": "error",
-                "noSetterReturn": "error",
-                "noSwitchDeclarations": "error",
-                "noUndeclaredVariables": "error",
-                "noUnreachable": "error",
-                "noUnreachableSuper": "error",
-                "noUnsafeFinally": "error",
-                "noUnsafeOptionalChaining": "error",
-                "noUnusedLabels": "error",
-                "noUnusedPrivateClassMembers": "error",
-                "noUnusedVariables": "error",
-                "useIsNan": "error",
-                "useValidForDirection": "error",
-                "useValidTypeof": "error",
-                "useYield": "error"
+                "noConstAssign": "error", // const変数への再代入を禁止
+                "noConstantCondition": "error", // 定数条件を禁止
+                "noEmptyCharacterClassInRegex": "error", // 空の文字クラスを正規表現で禁止
+                "noEmptyPattern": "error", // 空のパターンを禁止
+                "noGlobalObjectCalls": "error", // グローバルオブジェクトの関数呼び出しを禁止
+                "noInvalidBuiltinInstantiation": "error", // 無効な組み込みオブジェクトのインスタンス化を禁止
+                "noInvalidConstructorSuper": "error", // 無効なコンストラクタのsuper呼び出しを禁止
+                "noNonoctalDecimalEscape": "error", // 非8進数の10進数エスケープを禁止
+                "noPrecisionLoss": "error", // 精度の損失を禁止
+                "noSelfAssign": "error", // 自己代入を禁止
+                "noSetterReturn": "error", // setterでのreturnを禁止
+                "noSwitchDeclarations": "error", // switch文内の宣言を禁止
+                "noUndeclaredVariables": "error", // 未宣言変数の使用を禁止
+                "noUnreachable": "error", // 到達不能コードを禁止
+                "noUnreachableSuper": "error", // 到達不能なsuper呼び出しを禁止
+                "noUnsafeFinally": "error", // 安全でないfinallyブロックを禁止
+                "noUnsafeOptionalChaining": "error", // 安全でないオプショナルチェーンを禁止
+                "noUnusedLabels": "error", // 未使用のラベルを禁止
+                "noUnusedPrivateClassMembers": "error", // 未使用のプライベートクラスメンバーを禁止
+                "noUnusedVariables": "error", // 未使用変数を禁止
+                "useIsNan": "error", // NaNチェックにはisNaN()を使用
+                "useValidForDirection": "error", // 有効なforループの方向を使用
+                "useValidTypeof": "error", // 有効なtypeof演算子を使用
+                "useYield": "error" // ジェネレータ関数ではyieldを使用
             },
             // === 疑わしいコードパターンに関するルール ===
-            // 式内での代入を禁止
-            // 非同期Promiseエグゼキューターを禁止
-            // catch句での代入を禁止
-            // クラスへの代入を禁止
-            // -0との比較を禁止
-            // 定数バイナリ式を禁止
-            // 正規表現内の制御文字を禁止
-            // debugger文を禁止
-            // 重複するcaseを禁止
-            // 重複するクラスメンバーを禁止
-            // 重複するelse-ifを禁止
-            // 重複するオブジェクトキーを禁止
-            // 重複するパラメータを禁止
-            // 空のブロック文を禁止
-            // switch文でのフォールスルーを禁止
-            // 関数への代入を禁止
-            // グローバル変数への再代入を禁止（no-global-assign相当）
-            // importへの代入を禁止
-            // 不正な空白文字を禁止
-            // 誤解を招く文字クラスを禁止
-            // プロトタイプの組み込みメソッドを禁止
-            // 再宣言を禁止
-            // 制限された名前のシャドウイングを禁止
-            // スパース配列を禁止
-            // 安全でない否定を禁止
-            // 不要な正規表現の後方参照を禁止
-            // with文を禁止
-            // getterでのreturnを必須化
             "suspicious": {
-                "noAssignInExpressions": "error",
-                "noAsyncPromiseExecutor": "error",
-                "noCatchAssign": "error",
-                "noClassAssign": "error",
-                "noCompareNegZero": "error",
-                "noConstantBinaryExpressions": "error",
-                "noControlCharactersInRegex": "error",
-                "noDebugger": "error",
-                "noDuplicateCase": "error",
-                "noDuplicateClassMembers": "error",
-                "noDuplicateElseIf": "error",
-                "noDuplicateObjectKeys": "error",
-                "noDuplicateParameters": "error",
-                "noEmptyBlockStatements": "error",
-                "noFallthroughSwitchClause": "error",
-                "noFunctionAssign": "error",
-                "noGlobalAssign": "error",
-                "noImportAssign": "error",
-                "noIrregularWhitespace": "error",
-                "noMisleadingCharacterClass": "error",
-                "noPrototypeBuiltins": "error",
-                "noRedeclare": "error",
-                "noShadowRestrictedNames": "error",
-                "noSparseArray": "error",
-                "noUnsafeNegation": "error",
-                "noUselessRegexBackrefs": "error",
-                "noWith": "error",
-                "useGetterReturn": "error"
+                "noAssignInExpressions": "error", // 式内での代入を禁止
+                "noAsyncPromiseExecutor": "error", // 非同期Promiseエグゼキューターを禁止
+                "noCatchAssign": "error", // catch句での変数代入を禁止
+                "noClassAssign": "error", // クラスの再代入を禁止
+                "noCompareNegZero": "error", // -0との比較を禁止
+                "noConstantBinaryExpressions": "error", // 定数の二項式を禁止
+                "noControlCharactersInRegex": "error", // 正規表現内の制御文字を禁止
+                "noDebugger": "error", // debugger文を禁止
+                "noDuplicateCase": "error", // switch文の重複したcaseを禁止
+                "noDuplicateClassMembers": "error", // 重複したクラスメンバーを禁止
+                "noDuplicateElseIf": "error", // 重複したelse ifを禁止
+                "noDuplicateObjectKeys": "error", // 重複したオブジェクトキーを禁止
+                "noDuplicateParameters": "error", // 重複したパラメータを禁止
+                "noEmptyBlockStatements": "error", // 空のブロック文を禁止
+                "noFallthroughSwitchClause": "error", // switch文のフォールスルーを禁止
+                "noFunctionAssign": "error", // 関数の再代入を禁止
+                "noGlobalAssign": "error", // グローバル変数への再代入を禁止（no-global-assign相当）
+                "noImportAssign": "error", // importの再代入を禁止
+                "noIrregularWhitespace": "error", // 不正な空白文字を禁止
+                "noMisleadingCharacterClass": "error", // 誤解を招く文字クラスを禁止
+                "noPrototypeBuiltins": "error", // プロトタイプの組み込みメソッドを禁止
+                "noRedeclare": "error", // 再宣言を禁止
+                "noShadowRestrictedNames": "error", // 制限された名前のシャドウを禁止
+                "noSparseArray": "error", // スパース配列を禁止
+                "noUnsafeNegation": "error", // 安全でない否定を禁止
+                "noUselessRegexBackrefs": "error", // 無意味な正規表現の後方参照を禁止
+                "noWith": "error", // with文を禁止
+                "useGetterReturn": "error" // getterでreturn文を使用
             }
         },
         // リンターの対象ファイル: すべてのファイル（node_modulesとdistを除く）
@@ -177,24 +105,15 @@
     // === JavaScript設定 ===
     "javascript": {
         "formatter": {
-            // JSXのクォートスタイル: ダブルクォート
-            "jsxQuoteStyle": "double",
-            // オブジェクトプロパティのクォート: 必要な場合のみ
-            "quoteProperties": "asNeeded",
-            // 末尾のカンマ: ES5形式（オブジェクトと配列のみ）
-            "trailingCommas": "es5",
-            // セミコロン: 常に使用（semi: error相当）
-            "semicolons": "always",
-            // アロー関数の括弧: 常に使用（arrow-parens: error相当）
-            "arrowParentheses": "always",
-            // 開始ブラケットを同じ行に配置しない
-            "bracketSameLine": false,
-            // クォートスタイル: シングルクォート
-            "quoteStyle": "single",
-            // HTML属性の位置: 自動決定
-            "attributePosition": "auto",
-            // オブジェクトリテラルの波括弧内にスペースを入れる
-            "bracketSpacing": true
+            "jsxQuoteStyle": "double", // JSX属性のクォートスタイル: "double"（ダブルクォート）
+            "quoteProperties": "asNeeded", // オブジェクトプロパティのクォート: "asNeeded"（必要な場合のみ）
+            "trailingCommas": "es5", // 末尾のカンマ: "es5"（ES5互換）、"all"（常に）、"none"（なし）
+            "semicolons": "always", // セミコロン: "always"（常に）、"asNeeded"（必要な場合のみ）
+            "arrowParentheses": "always", // アロー関数の括弧: "always"（常に）、"asNeeded"（必要な場合のみ）
+            "bracketSameLine": false, // 開始ブラケットを同じ行に配置しない
+            "quoteStyle": "single", // 文字列のクォートスタイル: "single"（シングルクォート）
+            "attributePosition": "auto", // JSX属性の位置: "auto"（自動）
+            "bracketSpacing": true // オブジェクトリテラルの括弧内にスペースを入れる
         },
         // グローバル変数: デフォルトでは空（overridesで設定）
         "globals": []
@@ -203,20 +122,16 @@
     // HTMLファイルのフォーマット設定
     "html": {
         "formatter": {
-            // scriptとstyleタグ内をインデントしない
-            "indentScriptAndStyle": false,
-            // void要素を自己閉じタグにしない（<br>のまま）
-            "selfCloseVoidElements": "never"
+            "indentScriptAndStyle": false, // <script>と<style>タグ内をインデントしない
+            "selfCloseVoidElements": "never" // 空要素を常に自己閉じタグにしない（<br>のまま）
         },
-        // Vueファイルなどの埋め込みスクリプトの完全サポートを有効化
-        "experimentalFullSupportEnabled": true
+        "experimentalFullSupportEnabled": true // Vueファイルなどの埋め込みスクリプトの完全サポートを有効化
     },
     // === CSS設定 ===
     // CSSファイルのパーサー設定
     "css": {
         "parser": {
-            // Tailwind CSS v4の構文（@custom-variant、@applyなど）を許可
-            "tailwindDirectives": true
+            "tailwindDirectives": true // Tailwind CSS v4の構文（@custom-variant、@applyなど）を許可
         }
     },
     // === オーバーライド設定 ===
@@ -226,6 +141,9 @@
         {
             "includes": ["*.vue", "**/*.vue"],
             "javascript": {
+                "formatter": {
+                    "semicolons": "always" // セミコロンを常に使用
+                },
                 "globals": []
             },
             "linter": {
@@ -242,40 +160,34 @@
         {
             "includes": ["new-homepage/**/*.{js,mjs,cjs,ts,tsx,vue}"],
             "javascript": {
+                "formatter": {
+                    "semicolons": "always" // セミコロンを常に使用
+                },
                 // Vueとflatpickrをグローバル変数として認識
                 "globals": ["Vue", "flatpickr"]
             },
             "linter": {
                 "rules": {
                     // === 複雑度ルール ===
-                    // argumentsオブジェクトの使用を禁止（prefer-rest-params相当）
-                    // 不要なコンストラクタを禁止（no-useless-constructor相当）
-                    // 不要な名前変更を禁止（no-useless-rename相当）
-                    // リテラルキーの使用を推奨
                     "complexity": {
-                        "noArguments": "error",
-                        "noUselessConstructor": "error",
-                        "noUselessRename": "error",
-                        "useLiteralKeys": "error"
+                        "noArguments": "error", // argumentsオブジェクトの使用を禁止（prefer-rest-params相当）
+                        "noUselessConstructor": "error", // 不要なコンストラクタを禁止（no-useless-constructor相当）
+                        "noUselessRename": "error", // 不要な名前変更を禁止（no-useless-rename相当）
+                        "useLiteralKeys": "error" // リテラルキーの使用を推奨
                     },
                     // === 正確性ルール ===
-                    // 未宣言変数の使用を禁止
-                    // 未使用変数をエラーとして検出
                     "correctness": {
-                        "noUndeclaredVariables": "error",
-                        "noUnusedVariables": "error"
+                        "noUndeclaredVariables": "error", // 未宣言変数の使用を禁止
+                        "noUnusedVariables": "error" // 未使用変数をエラーとして検出
                     },
                     // === スタイルルール ===
-                    // 再代入されない変数はconstを使用（prefer-const相当）
                     "style": {
-                        "useConst": "error"
+                        "useConst": "error" // 再代入されない変数はconstを使用（prefer-const相当）
                     },
                     // === 疑わしいコードパターンルール ===
-                    // consoleの使用を警告（no-console: warn相当）
-                    // グローバル変数への再代入を禁止
                     "suspicious": {
-                        "noConsole": "warn",
-                        "noGlobalAssign": "error"
+                        "noConsole": "warn", // consoleの使用を警告（no-console: warn相当）
+                        "noGlobalAssign": "error" // グローバル変数への再代入を禁止
                     }
                 }
             }
@@ -292,17 +204,22 @@
                     }
                 }
             }
+        },
+        // HTMLファイル専用の設定
+        {
+            "includes": ["*.html"],
+            "formatter": {
+                "indentWidth": 2 // HTMLファイルのインデント幅を2に設定
+            }
         }
     ],
     // === アシスト機能設定 ===
     // エディタの自動補完やインポート整理などの機能
     "assist": {
-        // アシスト機能を有効化
-        "enabled": true,
+        "enabled": true, // アシスト機能を有効化
         "actions": {
             "source": {
-                // インポート文を自動整理
-                "organizeImports": "on"
+                "organizeImports": "on" // インポート文を自動整理
             }
         }
     }
