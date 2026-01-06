@@ -91,18 +91,18 @@ onMounted(() => {
                     </div>
 
                     <!-- パーツテーブル -->
-                    <div v-if="gun.tableValue && gun.tableValue.length > 0" class="overflow-x-auto">
-                        <table class="min-w-full divide-y divide-gray-200 dark:divide-[#3e3e3e]">
+                    <div v-if="gun.tableValue && gun.tableValue.length > 0" class="overflow-x-auto -mx-2 sm:mx-0">
+                        <table class="w-full divide-y divide-gray-200 dark:divide-[#3e3e3e]">
                             <thead class="bg-[#e0e0e0] dark:bg-[#272727]">
                                 <tr>
-                                    <th class="px-6 py-3 text-left text-md font-medium text-gray-500 dark:text-[#d0d0d0] uppercase tracking-wider">メーカー</th>
-                                    <th class="px-6 py-3 text-left text-md font-medium text-gray-500 dark:text-[#d0d0d0] uppercase tracking-wider">パーツ名称</th>
+                                    <th class="px-3 sm:px-6 py-3 text-left text-xs sm:text-sm font-medium text-gray-500 dark:text-[#d0d0d0] tracking-wider">メーカー</th>
+                                    <th class="px-3 sm:px-6 py-3 text-left text-xs sm:text-sm font-medium text-gray-500 dark:text-[#d0d0d0] tracking-wider">パーツ名称</th>
                                 </tr>
                             </thead>
                             <tbody class="bg-[#e0e0e0] dark:bg-[#272727] divide-y divide-gray-200 dark:divide-[#3e3e3e]">
                                 <tr v-for="(part, index) in gun.tableValue" :key="index" class="hover:bg-[#d5d5d5] dark:hover:bg-[#2e2e2e] transition-colors">
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-[#d0d0d0]">{{ part.maker }}</td>
-                                    <td class="px-6 py-4 text-sm text-gray-900 dark:text-[#d0d0d0]">{{ part.name }}</td>
+                                    <td class="px-3 sm:px-6 py-4 text-xs sm:text-sm text-gray-900 dark:text-[#d0d0d0]">{{ part.maker }}</td>
+                                    <td class="px-3 sm:px-6 py-4 text-xs sm:text-sm text-gray-900 dark:text-[#d0d0d0] wrap-break-word">{{ part.name }}</td>
                                 </tr>
                             </tbody>
                         </table>
