@@ -31,4 +31,4 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./new-homepage/dist/  # Vite のビルド出力先
-          server-dir: /  # サーバー上のパス
+          server-dir: ${{ secrets.FTP_SERVER_DIR }}  # サーバー上のパス
