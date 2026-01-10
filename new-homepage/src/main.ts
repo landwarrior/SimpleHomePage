@@ -4,7 +4,6 @@ import App from './App.vue';
 import HomePage from './components/HomePage.vue';
 import LinkPage from './components/LinkPage.vue';
 import ToygunPage from './components/ToygunPage.vue';
-import { useDeleteAdvertising } from './composables/useDeleteAdvertising';
 import './style.css';
 
 /**
@@ -62,7 +61,3 @@ const router = createRouter({
 
 const app = createApp(App).use(router);
 app.mount('#app');
-
-// 広告削除機能を初期化
-const { initDeleteAdvertising } = useDeleteAdvertising();
-initDeleteAdvertising();

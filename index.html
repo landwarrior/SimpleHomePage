@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survivalな理想郷 - サーバー移転のお知らせ</title>
+    <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+    <style>
+        /* リセットとベーススタイル */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            font-family: "Nunito", "Noto Sans JP", sans-serif;
+            letter-spacing: 0.06rem;
+            --neu-bg: #e0e0e0;
+            --neu-text-color: #4e5253;
+            --neu-shadow-lt: #f3f3f3;
+            --neu-shadow-rb: #bebebe;
+            --teal-600: #0d9488;
+            --teal-700: #0f766e;
+            --teal-800: #115e59;
+            --teal-200: #99f6e4;
+        }
+
+        html {
+            font-size: 0.875rem;
+        }
+
+        @media (pointer: fine) {
+            html {
+                font-size: 1rem;
+            }
+        }
+
+        .dark {
+            color-scheme: dark;
+            --neu-bg: #272727;
+            --neu-text-color: #d0d0d0;
+            --neu-shadow-lt: #3e3e3e;
+            --neu-shadow-rb: #101010;
+        }
+
+        body {
+            margin: 0;
+            background-color: var(--neu-bg);
+            color: var(--neu-text-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ニューモーフィズムスタイル */
+        .neu-raised {
+            background: var(--neu-bg);
+            box-shadow:
+                8px 8px 16px var(--neu-shadow-rb),
+                -8px -8px 16px var(--neu-shadow-lt);
+        }
+
+        .neu-raised-lg {
+            background: var(--neu-bg);
+            box-shadow:
+                12px 12px 24px var(--neu-shadow-rb),
+                -12px -12px 24px var(--neu-shadow-lt);
+        }
+
+        .neu-rounded-lg {
+            border-radius: 1.5rem;
+        }
+
+        .neu-btn-raised {
+            background: var(--neu-bg);
+            box-shadow:
+                8px 8px 16px var(--neu-shadow-rb),
+                -8px -8px 16px var(--neu-shadow-lt);
+            transition: box-shadow 0.2s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .neu-btn-raised:hover {
+            box-shadow:
+                6px 6px 12px var(--neu-shadow-rb),
+                -6px -6px 12px var(--neu-shadow-lt);
+        }
+
+        .neu-btn-raised:active {
+            box-shadow:
+                inset 4px 4px 8px var(--neu-shadow-rb),
+                inset -4px -4px 8px var(--neu-shadow-lt);
+        }
+
+        /* ヘッダー */
+        header {
+            background-color: var(--teal-600);
+            color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 4rem;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .logo:hover {
+            color: var(--teal-200);
+        }
+
+        .theme-toggle-container {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .theme-toggle-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            background: white;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #374151;
+            transition: all 0.2s;
+        }
+
+        .dark .theme-toggle-btn {
+            background: #1f2937;
+            border-color: #374151;
+            color: #d1d5db;
+        }
+
+        .theme-toggle-btn:hover {
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .theme-toggle-btn svg {
+            width: 1.25rem;
+            height: 1.25rem;
+        }
+
+        /* メインコンテンツ */
+        main {
+            flex: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+            width: 100%;
+        }
+
+        .content-container {
+            max-width: 64rem;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--neu-text-color);
+        }
+
+        @media (min-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        .announcement-card {
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .announcement-card {
+                padding: 2.5rem;
+            }
+        }
+
+        .announcement-text {
+            color: var(--neu-text-color);
+            line-height: 1.75;
+            margin-bottom: 2rem;
+        }
+
+        .link-section {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .new-server-link {
+            display: inline-block;
+            padding: 1rem 2rem;
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: var(--neu-text-color);
+            text-decoration: none;
+            margin: 1rem 0;
+            min-width: 200px;
+        }
+
+        .new-server-link:hover {
+            text-decoration: underline;
+        }
+
+        .link-url {
+            display: block;
+            margin-top: 1rem;
+            font-size: 1rem;
+            color: var(--teal-600);
+            word-break: break-all;
+        }
+
+        .dark .link-url {
+            color: var(--teal-200);
+        }
+
+        /* フッター */
+        footer {
+            padding: 1.5rem 0;
+            margin-top: auto;
+            background-color: var(--neu-bg);
+            color: var(--neu-text-color);
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            text-align: center;
+        }
+
+        /* テーマ切り替えメニュー */
+        .theme-menu {
+            position: relative;
+            display: inline-block;
+        }
+
+        .theme-dropdown {
+            position: absolute;
+            right: 0;
+            top: 100%;
+            margin-top: 0.5rem;
+            width: 12rem;
+            background: white;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 50;
+            display: none;
+        }
+
+        .dark .theme-dropdown {
+            background: #1f2937;
+            border-color: #374151;
+        }
+
+        .theme-menu.open .theme-dropdown {
+            display: block;
+        }
+
+        .theme-option {
+            width: 100%;
+            text-align: left;
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #374151;
+            transition: background-color 0.2s;
+        }
+
+        .dark .theme-option {
+            color: #d1d5db;
+        }
+
+        .theme-option:hover {
+            background: #f3f4f6;
+        }
+
+        .dark .theme-option:hover {
+            background: #374151;
+        }
+
+        .theme-option.active {
+            background: #f3f4f6;
+            font-weight: 600;
+        }
+
+        .dark .theme-option.active {
+            background: #374151;
+        }
+
+        .theme-option svg {
+            width: 1rem;
+            height: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-container">
+                <a href="#" class="logo">Survivalな理想郷</a>
+                <div class="theme-toggle-container">
+                    <div class="theme-menu" id="themeMenu">
+                        <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="テーマを切り替え">
+                            <svg id="themeIcon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                            </svg>
+                            <span id="themeLabel">システム</span>
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        <div class="theme-dropdown">
+                            <button class="theme-option" data-theme="light">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+                                </svg>
+                                <span>ライト</span>
+                            </button>
+                            <button class="theme-option" data-theme="dark">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+                                </svg>
+                                <span>ダーク</span>
+                            </button>
+                            <button class="theme-option" data-theme="system">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                                </svg>
+                                <span>システム</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="content-container">
+            <h1>サーバー移転のお知らせ</h1>
+            <div class="neu-raised neu-rounded-lg announcement-card">
+                <div class="announcement-text">
+                    <p>
+                        この度、レンタルサーバーを移転いたしました。
+                        <br>
+                        新しいサーバーへは、以下のリンクからアクセスできます。
+                    </p>
+                </div>
+                <div class="link-section">
+                    <a href="https://example.com" class="neu-btn-raised neu-rounded-lg new-server-link" id="newServerLink">
+                        新しいサーバーへ移動
+                    </a>
+                    <div class="link-url" id="linkUrl">https://example.com</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <p>&copy; 2006 - <span id="currentYear"></span> landwarrior</p>
+        </div>
+    </footer>
+
+    <script>
+        // 現在の年を設定
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // テーマ管理
+        function getSystemTheme() {
+            return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+
+        function getStoredTheme() {
+            return localStorage.getItem('theme') || 'system';
+        }
+
+        function setTheme(theme) {
+            const html = document.documentElement;
+            const actualTheme = theme === 'system' ? getSystemTheme() : theme;
+
+            if (actualTheme === 'dark') {
+                html.classList.add('dark');
+            } else {
+                html.classList.remove('dark');
+            }
+
+            localStorage.setItem('theme', theme);
+            updateThemeUI(theme);
+        }
+
+        function updateThemeUI(theme) {
+            const themeLabel = document.getElementById('themeLabel');
+            const themeIcon = document.getElementById('themeIcon');
+            const options = document.querySelectorAll('.theme-option');
+
+            // ラベルとアイコンの更新
+            if (theme === 'light') {
+                themeLabel.textContent = 'ライト';
+                themeIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>';
+            } else if (theme === 'dark') {
+                themeLabel.textContent = 'ダーク';
+                themeIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>';
+            } else {
+                themeLabel.textContent = 'システム';
+                themeIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>';
+            }
+
+            // オプションのアクティブ状態を更新
+            options.forEach(option => {
+                if (option.dataset.theme === theme) {
+                    option.classList.add('active');
+                } else {
+                    option.classList.remove('active');
+                }
+            });
+        }
+
+        // 初期化
+        const storedTheme = getStoredTheme();
+        setTheme(storedTheme);
+        updateThemeUI(storedTheme);
+
+        // テーマ切り替えボタンのイベント
+        const themeMenu = document.getElementById('themeMenu');
+        const themeToggleBtn = document.getElementById('themeToggleBtn');
+
+        themeToggleBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            themeMenu.classList.toggle('open');
+        });
+
+        // テーマオプションのクリックイベント
+        document.querySelectorAll('.theme-option').forEach(option => {
+            option.addEventListener('click', () => {
+                const theme = option.dataset.theme;
+                setTheme(theme);
+                themeMenu.classList.remove('open');
+            });
+        });
+
+        // メニュー外をクリックしたら閉じる
+        document.addEventListener('click', (e) => {
+            if (!themeMenu.contains(e.target)) {
+                themeMenu.classList.remove('open');
+            }
+        });
+
+        // システムテーマの変更を監視
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+            if (getStoredTheme() === 'system') {
+                setTheme('system');
+            }
+        });
+
+        // 新しいサーバーのURLを設定
+        const newServerUrl = 'https://survival-utopia.com';
+        document.getElementById('newServerLink').href = newServerUrl;
+        document.getElementById('linkUrl').textContent = newServerUrl;
+    </script>
+</body>
+</html>
