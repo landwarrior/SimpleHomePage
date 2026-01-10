@@ -35,5 +35,3 @@ jobs:
           protocol: ftps  # 明示的な TLS/SSL 暗号化（FTPS）
           port: 21  # FTPS のポート番号
           security: loose  # 証明書検証を緩和（自己署名証明書などに対応）
-          timeout: 60000  # タイムアウトを60秒に延長
-          log-level: verbose  # 詳細ログを有効化（デバッグ用）

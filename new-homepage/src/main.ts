@@ -1,5 +1,5 @@
 import { createApp } from 'vue';
-import { createRouter, createWebHashHistory, type RouteRecordRaw } from 'vue-router';
+import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router';
 import App from './App.vue';
 import HomePage from './components/HomePage.vue';
 import LinkPage from './components/LinkPage.vue';
@@ -9,15 +9,34 @@ import './style.css';
 
 /**
  * ルート定義
- * Hash modeを使用しているため、URLは以下のようになります：
- * - ホーム: https://example.com/#/
- * - リンク集: https://example.com/#/linkpage
- * - トイガンインプレ: https://example.com/#/toygun
  *
- * Hash mode（createWebHashHistory）を使用する理由：
- * - レンタルサーバーで.htaccessが使用できない場合でも動作する
- * - サーバー側の設定が不要で、SPAのルーティングが正常に機能する
- * - 直接URLにアクセスしても404エラーにならない
+ * 【Hashモード vs Historyモードの違い】
+ *
+ * ■ Hashモード（createWebHashHistory）
+ *   - URL例: https://example.com/#/linkpage
+ *   - URLに#（ハッシュ）が含まれる
+ *   - メリット:
+ *     * サーバー側の設定（.htaccess等）が不要
+ *     * レンタルサーバーで.htaccessが使えない場合でも動作する
+ *     * 直接URLにアクセスしても404エラーにならない
+ *   - デメリット:
+ *     * URLが不自然（#が含まれる）
+ *     * SEO的には不利
+ *
+ * ■ Historyモード（createWebHistory）← 現在使用中
+ *   - URL例: https://example.com/linkpage
+ *   - 通常のURL形式（#が含まれない）
+ *   - メリット:
+ *     * 自然で読みやすいURL
+ *     * SEOに有利
+ *     * より一般的なWebサイトのような見た目
+ *   - デメリット:
+ *     * サーバー側の設定が必要（.htaccess等）
+ *     * 存在しないパスに直接アクセスすると404エラーになるため、
+ *       全てのリクエストをindex.htmlにリダイレクトする設定が必要
+ *
+ * 現在はHistoryモードを使用しています。
+ * .htaccessファイル（public/.htaccess）でSPAのルーティングを適切に処理しています。
  */
 const routes: RouteRecordRaw[] = [
     { path: '/', component: HomePage },
@@ -26,9 +45,18 @@ const routes: RouteRecordRaw[] = [
 ];
 
 const router = createRouter({
-    // Hash modeを使用（URLに#が含まれる）
-    // サーバー側の設定（.htaccess等）が不要で、レンタルサーバーでも動作する
-    history: createWebHashHistory(),
+    // History modeを使用（通常のURL形式）
+    // 例: /linkpage → https://example.com/linkpage
+    //
+    // サーバー側の設定が必要:
+    // - .htaccessで全てのリクエストをindex.htmlにリダイレクトする設定が必要
+    // - public/.htaccess ファイルがビルド時に dist/.htaccess にコピーされる
+    //
+    // Hash modeに変更する場合:
+    // - createWebHistory() → createWebHashHistory() に変更
+    // - URL例: /linkpage → https://example.com/#/linkpage
+    // - .htaccessファイルは不要になる
+    history: createWebHistory(),
     routes,
 });
 
