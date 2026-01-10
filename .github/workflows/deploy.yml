@@ -32,3 +32,5 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./new-homepage/dist/  # Vite のビルド出力先
           server-dir: ${{ secrets.FTP_SERVER_DIR }}  # サーバー上のパス
+          protocol: ftps  # 明示的な TLS/SSL 暗号化（FTPS）
+          port: 21  # FTPS のポート番号
