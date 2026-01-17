@@ -34,6 +34,10 @@
             "recommended": false, // 推奨ルールセットを無効化（個別に設定するため）
             // === 複雑度に関するルール ===
             "complexity": {
+                "noArguments": "error", // argumentsオブジェクトの使用を禁止（prefer-rest-params相当）
+                "noUselessConstructor": "error", // 不要なコンストラクタを禁止（no-useless-constructor相当）
+                "noUselessRename": "error", // 不要な名前変更を禁止（no-useless-rename相当）
+                "useLiteralKeys": "error", // リテラルキーの使用を推奨
                 "noAdjacentSpacesInRegex": "error", // 正規表現内の隣接するスペースを禁止
                 "noExtraBooleanCast": "error", // 不要なBooleanキャストを禁止
                 "noUselessCatch": "error", // 不要なcatchブロックを禁止
@@ -67,6 +71,10 @@
                 "useValidTypeof": "error", // 有効なtypeof演算子を使用
                 "useYield": "error" // ジェネレータ関数ではyieldを使用
             },
+            // コードの一貫性やスタイルに関するルールを有効化する項目
+            "style": {
+                "useConst": "error" // constの使用を強制（再代入されない変数）
+            },
             // === 疑わしいコードパターンに関するルール ===
             "suspicious": {
                 "noAssignInExpressions": "error", // 式内での代入を禁止
@@ -85,6 +93,7 @@
                 "noEmptyBlockStatements": "error", // 空のブロック文を禁止
                 "noFallthroughSwitchClause": "error", // switch文のフォールスルーを禁止
                 "noFunctionAssign": "error", // 関数の再代入を禁止
+                "noConsole": "warn", // consoleの使用を警告（no-console: warn相当）
                 "noGlobalAssign": "error", // グローバル変数への再代入を禁止（no-global-assign相当）
                 "noImportAssign": "error", // importの再代入を禁止
                 "noIrregularWhitespace": "error", // 不正な空白文字を禁止
@@ -140,12 +149,6 @@
         // Vueファイル用の設定
         {
             "includes": ["*.vue", "**/*.vue"],
-            "javascript": {
-                "formatter": {
-                    "semicolons": "always" // セミコロンを常に使用
-                },
-                "globals": []
-            },
             "linter": {
                 "rules": {
                     // Vueの<script setup>では、テンプレート内で使用される変数が
@@ -160,49 +163,8 @@
         {
             "includes": ["new-homepage/**/*.{js,mjs,cjs,ts,tsx,vue}"],
             "javascript": {
-                "formatter": {
-                    "semicolons": "always" // セミコロンを常に使用
-                },
                 // Vueとflatpickrをグローバル変数として認識
                 "globals": ["Vue", "flatpickr"]
-            },
-            "linter": {
-                "rules": {
-                    // === 複雑度ルール ===
-                    "complexity": {
-                        "noArguments": "error", // argumentsオブジェクトの使用を禁止（prefer-rest-params相当）
-                        "noUselessConstructor": "error", // 不要なコンストラクタを禁止（no-useless-constructor相当）
-                        "noUselessRename": "error", // 不要な名前変更を禁止（no-useless-rename相当）
-                        "useLiteralKeys": "error" // リテラルキーの使用を推奨
-                    },
-                    // === 正確性ルール ===
-                    "correctness": {
-                        "noUndeclaredVariables": "error", // 未宣言変数の使用を禁止
-                        "noUnusedVariables": "error" // 未使用変数をエラーとして検出
-                    },
-                    // === スタイルルール ===
-                    "style": {
-                        "useConst": "error" // 再代入されない変数はconstを使用（prefer-const相当）
-                    },
-                    // === 疑わしいコードパターンルール ===
-                    "suspicious": {
-                        "noConsole": "warn", // consoleの使用を警告（no-console: warn相当）
-                        "noGlobalAssign": "error" // グローバル変数への再代入を禁止
-                    }
-                }
-            }
-        },
-        // new-homepageディレクトリ内のVueファイル専用の設定
-        {
-            "includes": ["new-homepage/**/*.vue"],
-            "linter": {
-                "rules": {
-                    // Vueの<script setup>では、テンプレート内で使用される変数が
-                    // Biomeによって認識されないため、未使用変数のチェックを無効化
-                    "correctness": {
-                        "noUnusedVariables": "off"
-                    }
-                }
             }
         },
         // HTMLファイル専用の設定
