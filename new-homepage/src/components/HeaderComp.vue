@@ -70,7 +70,7 @@ const handleUpdateTheme = (theme: Theme): void => {
 
 <template>
     <header class="bg-teal-600 text-white shadow-md">
-        <nav class="container mx-auto px-4">
+        <nav class="page-container">
             <div class="flex items-center justify-between h-16">
                 <RouterLink to="/" class="text-xl font-bold hover:text-teal-200 transition-colors">Survivalな理想郷</RouterLink>
 

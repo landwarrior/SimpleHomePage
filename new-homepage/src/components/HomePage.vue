@@ -3,7 +3,7 @@
 </script>
 
 <template>
-    <main class="container mx-auto px-4 py-8 grow">
+    <main class="page-container py-8 grow">
         <div class="max-w-4xl mx-auto">
             <h1 class="text-3xl md:text-4xl font-bold text-center mb-8 text-gray-800 dark:text-gray-100">このホームページについて</h1>
             <div class="neu-raised neu-rounded-lg dark:bg-gray-800 dark:shadow-md p-6 md:p-8 transition-all">

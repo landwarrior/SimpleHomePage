@@ -52,6 +52,18 @@ body {
     color: var(--neu-text-color);
 }
 
+/* @layer utilities: Tailwindの「utilities層」に自作クラスを登録する */
+@layer utilities {
+    .page-container {
+        /* @apply は Tailwind のユーティリティをまとめて適用する記法
+           mx-auto: 左右autoで中央寄せ / w-full: 幅100% / px-4: 左右パディング */
+        @apply mx-auto w-full px-4;
+        /* clamp(最小値, 推奨値, 最大値)
+           画面幅に応じて max-width を滑らかに変化させる */
+        max-width: clamp(20rem, 92vw, 72rem);
+    }
+}
+
 /* ニューモーフィズム（Neumorphism）スタイル */
 
 /* ============================================

@@ -25,7 +25,7 @@ const linkCategories: LinkCategory[] = [
 </script>
 
 <template>
-    <div class="container mx-auto px-4 py-8">
+    <div class="page-container py-8">
         <h1 class="text-3xl md:text-4xl font-bold text-center mb-8 text-gray-800 dark:text-gray-100">リンク集</h1>
         <div class="space-y-8">
             <div v-for="category in linkCategories" :key="category.title" class="neu-raised neu-rounded-lg dark:bg-gray-800 dark:shadow-md p-6 transition-all">
