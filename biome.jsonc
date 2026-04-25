@@ -1,6 +1,6 @@
 {
     // Biome設定ファイルのスキーマ定義
-    "$schema": "https://biomejs.dev/schemas/2.3.10/schema.json",
+    "$schema": "https://biomejs.dev/schemas/2.4.13/schema.json",
     // === バージョン管理システム設定 ===
     "vcs": {
         "enabled": true, // VCS統合を有効化（Gitの設定を自動検出）
