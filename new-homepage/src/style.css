@@ -223,3 +223,79 @@ body {
         inset 10px 10px 20px var(--neu-shadow-rb),
         inset -10px -10px 20px var(--neu-shadow-lt);
 }
+
+/* ============================================
+   テーブル用ニューモーフィズム
+   neu カード内の表向け（thead あり / tbody のみ 両対応）
+   ============================================ */
+
+table {
+    width: calc(100% - 1.5rem);
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 1rem; /* .neu-rounded と揃える */
+    margin: 0.75rem; /* 周囲に背景色の余白を確保しないと raised の影が立体に見えない */
+    background: var(--neu-bg);
+    color: var(--neu-text-color);
+    /* 親の .neu-raised 内なのでやや控えめ（.neu-raised-sm 〜 標準の中間） */
+    box-shadow:
+        6px 6px 12px var(--neu-shadow-rb),
+        -6px -6px 12px var(--neu-shadow-lt);
+
+    & th,
+    & td {
+        border: none;
+        border-top: 1px solid color-mix(in srgb, var(--neu-shadow-rb) 40%, transparent);
+    }
+
+    /* ヘッダーは凹み（.neu-pressed-sm よりやや弱め） */
+    & thead th {
+        border-top: none;
+        color: color-mix(in srgb, var(--neu-text-color) 72%, transparent);
+        box-shadow:
+            inset 3px 3px 6px var(--neu-shadow-rb),
+            inset -3px -3px 6px var(--neu-shadow-lt);
+    }
+
+    /*
+     * 先頭行の角丸
+     * - thead あり → thead の先頭行
+     * - thead なし → 最初の tbody の先頭行（th でも td でも可）
+     */
+    & thead tr:first-child,
+    & tbody:not(thead ~ tbody) tr:first-child {
+        & > :first-child {
+            border-top-left-radius: 1rem;
+        }
+
+        & > :last-child {
+            border-top-right-radius: 1rem;
+        }
+    }
+
+    /* thead なしのとき、先頭行の上罫線を消す */
+    & tbody:not(thead ~ tbody) tr:first-child > :is(th, td) {
+        border-top: none;
+    }
+
+    /* 最終行の角丸（th / td どちらでも可） */
+    & tbody:last-of-type tr:last-child {
+        & > :first-child {
+            border-bottom-left-radius: 1rem;
+        }
+
+        & > :last-child {
+            border-bottom-right-radius: 1rem;
+        }
+    }
+
+    & tbody tr > :is(th, td) {
+        transition: box-shadow 0.2s ease;
+    }
+
+    & tbody tr:hover > :is(th, td) {
+        box-shadow:
+            inset 2px 2px 5px var(--neu-shadow-rb),
+            inset -2px -2px 5px var(--neu-shadow-lt);
+    }
+}
