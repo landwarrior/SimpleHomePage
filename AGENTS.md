@@ -79,6 +79,17 @@ npx biome check --write .
 - ヘッダーメニューに出したい場合は `HeaderComp.vue` の `menuList` にも追加し、ページタイトルの表示は `App.vue` の `activeTitle` に分岐を足します
 - `.github/workflows/deploy.yml` が `main` への push で `new-homepage/` をビルドし、`dist/` を FTPS 転送します。サーバー情報は GitHub Secrets 管理
 
+**重要: レンタルサーバーの FTP に IP フィルターをかけないこと。** GitHub Actions のランナーは海外の IP アドレスから接続するため、「海外 IP からのアクセスを拒否する」設定を有効にするとデプロイが必ず失敗します。過去にこの設定を入れてしまい、デプロイが落ちた実績があります。
+
+このとき出るエラーは次のもので、認証失敗には見えないため原因を取り違えやすいです。
+
+```
+Failed to connect, are you sure your server works via FTP or FTPS?
+Error: Server sent FIN packet unexpectedly, closing connection.
+```
+
+FTP の応答コード（`530` など）が出ないまま TLS 接続直後に切断されている場合は、パスワードではなくサーバー側の IP フィルターを最初に疑ってください。エージェントはこの症状を見つけたら、Secrets の確認より先に IP フィルターの設定をユーザーに確認すること。
+
 ## 作業時の注意
 
 - `HomePage.vue` の「最終更新日」は手書きです。サイトの内容を変えたら合わせて更新してください（更新忘れのコミットが過去にあります）
