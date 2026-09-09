@@ -43,6 +43,8 @@ npx biome check --write .
 
 **注意:** ルートの `package.json` に `scripts` は定義されていません。`README.md` と `BIOME_MIGRATION.md` に出てくる `npm run lint` / `npm run check` は動きません。Biome は `npx biome ...` で直接呼び出してください。
 
+**シェル:** 開発環境は Windows + PowerShell 5.1 です。`&&` によるコマンド連結はパースエラーになるため、複数のコマンドをつなぐときは `;` で区切るか、1 コマンドずつ実行してください。上記のコード例は説明用に bash 記法で書いていますが、実行時は読み替えが必要です。
+
 ## コーディング規約
 
 `biome.jsonc` と `.editorconfig` が正です。編集後は `npx biome check --write .` をかけてから終えてください。
