@@ -123,15 +123,15 @@ watch(
                             </a>
                         </li>
                     </ul>
-                    <ThemeToggle :current-theme="currentTheme ?? 'system'" @update-theme="handleUpdateTheme"/>
+                    <ThemeToggle :current-theme="currentTheme ?? 'system'" @update-theme="handleUpdateTheme" />
                 </div>
 
                 <!-- コンパクトメニュー（md 以上 lg 未満） -->
                 <div class="hidden md:flex lg:hidden items-center gap-2 relative">
-                    <button @click="toggleCompactMenu" class="flex items-center gap-1 px-3 py-2 rounded hover:bg-teal-700 transition-colors" aria-label="メニューを開く">
+                    <button type="button" @click="toggleCompactMenu" class="flex items-center gap-1 px-3 py-2 rounded hover:bg-teal-700 transition-colors" aria-label="メニューを開く">
                         <span>メニュー</span>
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                         </svg>
                     </button>
 
@@ -165,17 +165,17 @@ watch(
                             </li>
                         </ul>
                     </div>
-                    <ThemeToggle :current-theme="currentTheme ?? 'system'" @update-theme="handleUpdateTheme"/>
+                    <ThemeToggle :current-theme="currentTheme ?? 'system'" @update-theme="handleUpdateTheme" />
                 </div>
 
                 <!-- モバイルメニュー用ボタン（md 未満） -->
                 <div class="md:hidden flex items-center gap-2">
-                    <button @click="toggleMobileMenu" class="p-2 rounded hover:bg-teal-700 transition-colors" aria-label="メニューを開く">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    <button type="button" @click="toggleMobileMenu" class="p-2 rounded hover:bg-teal-700 transition-colors" aria-label="メニューを開く">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                         </svg>
                     </button>
-                    <ThemeToggle :current-theme="currentTheme ?? 'system'" @update-theme="handleUpdateTheme"/>
+                    <ThemeToggle :current-theme="currentTheme ?? 'system'" @update-theme="handleUpdateTheme" />
                 </div>
             </div>
 

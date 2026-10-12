@@ -273,11 +273,6 @@ table {
         }
     }
 
-    /* thead なしのとき、先頭行の上罫線を消す */
-    & tbody:not(thead ~ tbody) tr:first-child > :is(th, td) {
-        border-top: none;
-    }
-
     /* 最終行の角丸（th / td どちらでも可） */
     & tbody:last-of-type tr:last-child {
         & > :first-child {
@@ -297,5 +292,10 @@ table {
         box-shadow:
             inset 2px 2px 5px var(--neu-shadow-rb),
             inset -2px -2px 5px var(--neu-shadow-lt);
+    }
+
+    /* thead なしのとき、先頭行の上罫線を消す。詳細度が高いので一般ルールの後に置く */
+    & tbody:not(thead ~ tbody) tr:first-child > :is(th, td) {
+        border-top: none;
     }
 }
