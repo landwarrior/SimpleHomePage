@@ -59,6 +59,7 @@ onMounted(() => {
                     <button
                         v-for="gun in category.list"
                         :key="gun.id"
+                        type="button"
                         @click="setActiveTab(category.title, gun.id)"
                         :class="[
                             'px-5 py-2.5 text-sm font-medium neu-rounded transition-all',
@@ -80,14 +81,9 @@ onMounted(() => {
 
                     <!-- 画像ギャラリー -->
                     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-6">
-                        <img
-                            v-for="(img, index) in gun.imgs"
-                            :key="index"
-                            :src="img"
-                            :alt="`${gun.name} - 画像${index + 1}`"
-                            class="w-full h-auto rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer object-cover"
-                            @click="openImageInNewWindow(img)"
-                        >
+                        <button v-for="(img, index) in gun.imgs" :key="index" type="button" class="block w-full cursor-pointer border-0 bg-transparent p-0" @click="openImageInNewWindow(img)">
+                            <img :src="img" :alt="`${gun.name} - 画像${index + 1}`" class="w-full h-auto rounded-lg shadow-md hover:shadow-lg transition-shadow object-cover">
+                        </button>
                     </div>
 
                     <!-- パーツテーブル -->
