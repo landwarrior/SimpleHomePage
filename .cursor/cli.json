@@ -1,0 +1,8 @@
+{
+    "version": 1,
+    "permissions": {
+        "allow": ["Shell(ls)", "Read(**)"],
+        "deny": ["Shell(rm)", "Read(.env*)", "Write(**/.env*)", "Write(**/*.key)"]
+    },
+    "autoAcceptWebSearch": true
+}
